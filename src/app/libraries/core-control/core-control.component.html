@@ -1,0 +1,18 @@
+<div class="core-control-container">
+    <div [class.hidden]="!!control.hidden">
+        <div class="w-100 d-flex flex-column justify-content-between">
+            <label class="control-label pb-1">
+                <strong>{{ control.label }}</strong>
+            </label>
+
+            @if(control.controlType == 'TEXTBOX'){
+            <core-text-box [formControlName]="control.field" [inputValue]="control.value"></core-text-box>
+            }
+            @else if (control.controlType == 'CHECKBOX') {
+            <core-check-box [formControlName]="control.field" [text]="control.label"
+                [inputValue]="control.value"></core-check-box>
+            }
+        </div>
+    </div>
+
+</div>
