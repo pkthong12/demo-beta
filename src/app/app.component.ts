@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CoreControlComponent } from './libraries/core-control/core-control.component';
 import { EnumFormBaseContolType, ICoreFormSection, IFormBaseControl } from './enum/enum-interfaces';
 import { CoreControlService } from './libraries/core-control/core-control.service';
+import { RouterModule } from '@angular/router';
+import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CoreControlComponent
+    AppLayoutComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -42,6 +44,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.coreControlService.toGroup(this.sections));
   }
 }
