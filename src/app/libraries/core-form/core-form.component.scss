@@ -1,0 +1,50 @@
+$shadow: .3rem .3rem .6rem var(--greyLight-2),
+    -.2rem -.2rem .5rem var(--white);
+$inner-shadow: inset .2rem .2rem .5rem var(--greyLight-2),
+    inset -.2rem -.2rem .5rem var(--white);
+
+.btn {
+    width: 6rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+    // background: var(--primary);
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    &__primary {
+        background: var(--primary);
+        box-shadow: inset .2rem .2rem 1rem var(--primary-light),
+            inset -.2rem -.2rem 1rem var(--primary-dark),
+            $shadow;
+        color: var(--greyLight-1);
+
+        &:active {
+            box-shadow: inset .2rem .2rem 1rem var(--primary-dark),
+                inset -.2rem -.2rem 1rem var(--primary-light);
+            color: var(--primary);
+        }
+    }
+
+    &__secondary {
+        color: var(--greyDark);
+
+        &:hover {
+            color: var(--primary);
+        }
+
+        &:active {
+            box-shadow: $inner-shadow;
+        }
+    }
+
+    p {
+        margin: 0;
+        font-weight: bold;
+    }
+}

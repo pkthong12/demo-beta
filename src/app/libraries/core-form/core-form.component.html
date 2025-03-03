@@ -1,21 +1,29 @@
 @if(!!form){
-    <form #formRef (ngSubmit)="onFormSubmit()" [formGroup]="form" autocomplete="off">
-        <div class="row">
-            <div class="col-md-12">
-                @for (section of sections; track $index) {
-                    <div class="section">
-                        @for (row of section.rows; track $index) {
-                            <div class="row mb15">
-                                @for (col of row; track $index) {
-                                    <div [class]="'col-md-' + col.flexSize">
-                                        <core-control [control]="col" [form]="form"></core-control>
-                                    </div>
-                                }
-                            </div>
-                        }
+<form #formRef (ngSubmit)="onFormSubmit()" [formGroup]="form" autocomplete="off">
+    <div class="row">
+        <div class="col-md-12">
+            @for (section of sections; track $index) {
+            <div class="section">
+                @for (row of section.rows; track $index) {
+                <div class="row mb15">
+                    @for (col of row; track $index) {
+                    <div [class]="'col-md-' + col.flexSize">
+                        <core-control [control]="col" [form]="form"></core-control>
                     </div>
+                    }
+                </div>
                 }
             </div>
+            }
         </div>
-    </form>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12 ">
+            <div class="row justify-content-center">
+                <div class="btn btn__primary col-md-3" (click)="onFormSubmit()"><p>Submit</p></div>
+                <div class="btn btn__secondary col-md-3" (click)="onFormReset()"><p>Reset</p></div>
+            </div>
+        </div>
+    </div>
+</form>
 }

@@ -70,7 +70,6 @@ export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDe
       } else {
         this.updateSections(newSections);
       }
-      console.log(this.form)
       this.onFormCreated.emit({
         formName: this.formName,
         formGroup: this.form,
@@ -88,5 +87,11 @@ export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDe
     if (!!this.form.valid) {
       this.onSubmit.emit(this.form?.getRawValue());
     }
+  }
+  onFormReset() {
+    this.form.reset();
+    // if (!!this.form.valid) {
+    //   this.onSubmit.emit(this.form?.getRawValue());
+    // }
   }
 }

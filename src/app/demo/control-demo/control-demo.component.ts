@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CoreFormComponent } from '../../libraries/core-form/core-form.component';
 import { EnumFormBaseControlType, ICoreFormSection } from '../../enum/enum-interfaces';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'control-demo',
@@ -25,21 +26,47 @@ export class ControlDemoComponent {
             field: 'textbox',
             label: 'TEXTBOX',
             value: '',
-            type:'text',
+            type: 'text',
             flexSize: 3,
             readonly: true,
-            hidden:false,
+            hidden: false,
           },
           {
             controlType: EnumFormBaseControlType.CHECKBOX,
             field: 'checkbox',
             label: 'CHECKBOX',
             value: '',
-            type:'text',
+            type: 'text',
             flexSize: 3,
             readonly: true,
-            hidden:false,
-          }
+            hidden: false,
+          },
+          {
+            controlType: EnumFormBaseControlType.TEXTBOX,
+            field: 'textbox1',
+            label: 'TEXTBOX',
+            value: '',
+            type: 'text',
+            flexSize: 3,
+            readonly: true,
+            hidden: false,
+          }, {
+            controlType: EnumFormBaseControlType.TEXTBOX,
+            field: 'textbox2',
+            label: 'TEXTBOX',
+            value: '',
+            type: 'text',
+            flexSize: 3,
+            readonly: true,
+            hidden: false,
+            validators: [
+              {
+                name: 'required',
+                validator: Validators.required,
+                errorMessage: 'This field is required'
+              }
+            ]
+          },
         ]
       ]
     }
