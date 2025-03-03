@@ -1,11 +1,16 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CoreCheckBoxComponent } from '../core-check-box/core-check-box.component';
 import { CoreTextBoxComponent } from '../core-text-box/core-text-box.component';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseComponent } from '../base-component/base-component.component';
 import { CommonModule } from '@angular/common';
-import { EnumFormBaseControlType, IFnNameValidator, IFormBaseControl } from '../../enum/enum-interfaces';
-import { ValidatorFn } from "@angular/forms";
+import { IFnNameValidator, IFormBaseControl } from '../../enum/enum-interfaces';
+import { BehaviorSubject } from 'rxjs';
+
+interface IError {
+  key: string,
+  errorMessage: string
+}
 
 @Component({
   selector: 'core-control',
@@ -23,16 +28,69 @@ import { ValidatorFn } from "@angular/forms";
 export class CoreControlComponent extends BaseComponent implements OnInit, OnDestroy {
   @Input() control!: IFormBaseControl;
   @Input() form!: FormGroup;
+  @Input() checkError$!: BehaviorSubject<boolean>;
+
+  rawControl!: AbstractControl;
 
   isRequired: boolean = false;
+  errors: IError[] = [];
 
   ngOnInit(): void {
     this.onCreatedRequired();
-  }
-  ngOnDestroy(): void {
+
+    this.rawControl = this.form.get(this.control.field)!;
+
+    this.subscriptions.push(
+      this.rawControl?.statusChanges.subscribe(_ => {
+        this.checkError();
+      })
+    )
+    if (!!this.checkError$) {
+      this.subscriptions.push(
+        this.checkError$.subscribe(x => {
+          if (x) {
+            this.checkError();
+          } else {
+            this.resetError();
+          }
+        })
+      )
+    }
   }
 
-  onCreatedRequired() {
+  checkError(): void {
+    if (this.rawControl.errors) {
+      const newErrors: IError[] = [];
+      Object.keys(this.form.controls[this.control.field].errors!).forEach(key => {
+
+        if (this.form.controls[this.control.field].errors![key] instanceof Array) {
+          newErrors.push({
+            key: key,
+            errorMessage: this.form.controls[this.control.field].errors![key][1]
+          })
+        } else {
+          if (!!this.control.validators) {
+            const filter = this.control.validators?.filter(x => x.name.toLowerCase() === key.toLowerCase())
+            if (!!filter.length) {
+              newErrors.push({
+                key: key,
+                errorMessage: filter![0].errorMessage!
+              })
+            }
+          }
+        }
+      })
+      this.errors = newErrors;
+    } else {
+      this.errors = [];
+    }
+  }
+
+  resetError(): void {
+    this.errors = [];
+  }
+
+  onCreatedRequired(): void {
     if (this.control.validators) {
       this.isRequired = this.control.validators.some(x => x.name === IFnNameValidator.required);
     }

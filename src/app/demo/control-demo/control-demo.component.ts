@@ -25,7 +25,7 @@ export class ControlDemoComponent {
             controlType: EnumFormBaseControlType.TEXTBOX,
             field: 'textbox',
             label: 'TEXTBOX',
-            value: '',
+            value: 'dsdsds',
             type: 'text',
             flexSize: 3,
             readonly: true,
@@ -57,7 +57,7 @@ export class ControlDemoComponent {
             value: '',
             type: 'text',
             flexSize: 3,
-            readonly: true,
+            readonly: false,
             hidden: false,
             validators: [
               {

@@ -4,6 +4,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreControlService } from '../core-control/core-control.service';
 import { CommonModule } from '@angular/common';
 import { CoreControlComponent } from '../core-control/core-control.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'core-form',
@@ -20,7 +21,8 @@ import { CoreControlComponent } from '../core-control/core-control.component';
 export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy  {
   @Input() formName!: string;
   @Input() inputSections!: ICoreFormSection[];
-
+  @Input() checkError$ = new BehaviorSubject<boolean>(false);
+  
   @Output() onFormCreated = new EventEmitter<any>();
   @Output() onSubmit = new EventEmitter();
   @Output() onCancel = new EventEmitter();
@@ -84,15 +86,13 @@ export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDe
   }
 
   onFormSubmit() {
-    console.log(this.form?.getRawValue())
+    this.checkError$.next(true);
     if (!!this.form.valid) {
       this.onSubmit.emit(this.form?.getRawValue());
     }
   }
   onFormReset() {
     this.form.reset();
-    // if (!!this.form.valid) {
-    //   this.onSubmit.emit(this.form?.getRawValue());
-    // }
+    this.checkError$.next(false);
   }
 }

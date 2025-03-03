@@ -20,21 +20,19 @@ export class CoreControlService {
             column.validators.map((x) => {
               validatorArr.push(x.validator);
             });
-
             group[column.field] = new FormControl(
-              { value: column.value, disabled: !!column.disabled || !!column.readonly },
+              { value: column.value, disabled: !!column.disabled},
               validatorArr
             );
           } else {
             group[column.field] = new FormControl({
               value: column.value,
-              disabled: !!column.disabled || !!column.readonly,
+              disabled: !!column.disabled,
             });
           }
         });
       });
     });
-
     return group;
   }
 }

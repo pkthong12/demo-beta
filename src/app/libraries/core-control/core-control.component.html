@@ -22,6 +22,20 @@
             <core-check-box [formControlName]="control.field" [text]="control.label"
                 [inputValue]="control.value"></core-check-box>
             }
+
+            <!-- Messages error -->
+            @if(!!errors!.length){
+                @for (error of errors; track $index) {
+                    <div class="form-control-error">
+                        {{ error.errorMessage }}
+                    </div>
+                }
+            }
+            @if(!!errors!.length && !!checkError$.value){
+                <div>
+                    {{ '&nbsp;' }}
+                </div>
+            }    
         </div>
     </div>
 

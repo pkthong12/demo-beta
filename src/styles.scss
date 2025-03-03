@@ -47,6 +47,24 @@
 
 }
 
-.btn + .btn {
+.form-error {
+    color: #ec0000e0;
+    font-size: 14px;
+}
+
+.form-control-error {
+    color: #ec0000e0;
+    font-size: 14px;
+}
+
+.form-control {
+    font-size: 13px;
+}
+
+.form-control[readonly] {
+    background-color: white;
+}
+
+.btn+.btn {
     margin-left: 1rem;
 }

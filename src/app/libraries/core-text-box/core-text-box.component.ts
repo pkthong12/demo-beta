@@ -29,6 +29,7 @@ export class CoreTextBoxComponent extends CoreFormControlBaseComponent implement
       this.writeValue(e['inputValue'].currentValue)
   }
   ngOnInit(): void {
+    console.log(this.control())
   }
   ngOnDestroy(): void {
   }
