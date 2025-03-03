@@ -6,7 +6,7 @@ import { ICoreFormSection } from '../../enum/enum-interfaces';
   providedIn: 'root',
 })
 export class CoreControlService {
-  constructor() {}
+  constructor() { }
 
   toGroup(sections: ICoreFormSection[]): any {
     const group: any = {};
@@ -22,13 +22,13 @@ export class CoreControlService {
             });
 
             group[column.field] = new FormControl(
-              { value: column.value, disabled: !!column.disabled },
+              { value: column.value, disabled: !!column.disabled || !!column.readonly },
               validatorArr
             );
           } else {
             group[column.field] = new FormControl({
               value: column.value,
-              disabled: !!column.disabled,
+              disabled: !!column.disabled || !!column.readonly,
             });
           }
         });

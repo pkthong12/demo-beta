@@ -38,7 +38,7 @@ export class CoreCheckBoxComponent extends CoreFormControlBaseComponent implemen
   }
 
   onLabelClick(_: any) {
-    if(this.disabled == true){
+    if(this.disabled == true || this.readonly == true) {
       return
     }
     this.value = !this.value;

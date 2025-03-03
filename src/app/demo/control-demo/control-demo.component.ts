@@ -34,19 +34,12 @@ export class ControlDemoComponent {
           {
             controlType: EnumFormBaseControlType.CHECKBOX,
             field: 'checkbox',
-            label: 'CHECKBOXdsssssssssssssdsdsdssssssssssssssdsdsdssdsdsđsvvdfvbdfgdfd',
-            value: '',
-            type: 'text',
+            label: 'CHECKBOX',
+            value: false,
+            type: 'boolean',
             flexSize: 3,
             readonly: true,
             hidden: false,
-            validators: [
-              {
-                name: IFnNameValidator.required,
-                validator: Validators.required,
-                errorMessage: 'This field is required'
-              }
-            ]
           },
           {
             controlType: EnumFormBaseControlType.TEXTBOX,

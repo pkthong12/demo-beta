@@ -32,6 +32,7 @@ export class CoreFormControlBaseComponent implements ControlValueAccessor {
 
   writeValue(obj: any): void {
     this.value = obj;
+    this.onChange(this.value);
   }
 
   registerOnChange(fn: any): void {
