@@ -10,7 +10,7 @@ export class CoreControlService {
 
   toFormGroup(sections: ICoreFormSection[]): any {
     const group: any = {};
-
+    if (!sections) return group;
     sections.forEach((section) => {
       const fields = section.rows;
       fields.forEach((row) => {
@@ -21,7 +21,7 @@ export class CoreControlService {
               validatorArr.push(x.validator);
             });
             group[column.field] = new FormControl(
-              { value: column.value, disabled: !!column.disabled},
+              { value: column.value, disabled: !!column.disabled },
               validatorArr
             );
           } else {

@@ -13,6 +13,7 @@ import { Validators } from '@angular/forms';
   styleUrl: './control-demo.component.scss'
 })
 export class ControlDemoComponent {
+  
   formName = 'DEMO';
 
   sections: ICoreFormSection[] = [
@@ -38,7 +39,7 @@ export class ControlDemoComponent {
             flexSize: 3,
             readonly: false,
             hidden: false,
-            disabled:true
+            disabled: true
           },
           {
             controlType: EnumFormBaseControlType.TEXTBOX,
@@ -58,7 +59,6 @@ export class ControlDemoComponent {
             flexSize: 3,
             readonly: false,
             hidden: false,
-            disabled: true,
             validators: [
               {
                 name: IFnNameValidator.required,
@@ -76,4 +76,10 @@ export class ControlDemoComponent {
       ]
     }
   ];
+
+  onSubmit($event: any) {
+    console.log($event)
+  }
+  onCancel($event: any) {
+  }
 }

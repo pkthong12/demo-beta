@@ -69,7 +69,6 @@ export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDe
 
         this.form = form;
 
-        console.log(form)
 
       } else {
         this.updateSections(newSections);
