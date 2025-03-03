@@ -20,7 +20,7 @@ import { CoreFormControlBaseComponent } from '../core-form-control-base/core-for
   templateUrl: './core-check-box.component.html',
   styleUrl: './core-check-box.component.scss'
 })
-export class CoreCheckBoxComponent extends CoreFormControlBaseComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class CoreCheckBoxComponent extends CoreFormControlBaseComponent implements OnInit, OnChanges {
   @Input() text!: string;
   @Input() inputValue!: boolean;
 
@@ -32,9 +32,6 @@ export class CoreCheckBoxComponent extends CoreFormControlBaseComponent implemen
       this.writeValue(e['inputValue'].currentValue)
   }
   ngOnInit(): void {
-  }
-  override writeValue(obj: boolean): void {
-    this.value = obj;
   }
 
   onLabelClick(_: any) {
