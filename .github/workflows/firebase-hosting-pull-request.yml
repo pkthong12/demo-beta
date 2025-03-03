@@ -17,5 +17,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FIR_BETA_FORM }}
-          projectId: fir-beta-form
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BETA_FORM }}
+          projectId: beta-form
