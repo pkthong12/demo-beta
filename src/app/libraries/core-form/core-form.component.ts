@@ -84,6 +84,7 @@ export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDe
   }
 
   onFormSubmit() {
+    console.log(this.form?.getRawValue())
     if (!!this.form.valid) {
       this.onSubmit.emit(this.form?.getRawValue());
     }

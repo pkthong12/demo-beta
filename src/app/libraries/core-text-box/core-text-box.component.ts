@@ -2,7 +2,7 @@ import { Component, input, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } 
 import { CoreFormControlBaseComponent } from '../core-form-control-base/core-form-control-base.component';
 import { IFormBaseControl } from '../../enum/enum-interfaces';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'core-text-box',
@@ -21,7 +21,7 @@ import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
   templateUrl: './core-text-box.component.html',
   styleUrl: './core-text-box.component.scss'
 })
-export class CoreTextBoxComponent extends CoreFormControlBaseComponent implements OnInit, OnChanges, OnDestroy {
+export class CoreTextBoxComponent extends CoreFormControlBaseComponent implements OnInit, ControlValueAccessor, OnChanges, OnDestroy {
   control = input.required<IFormBaseControl>();
   inputValue= input.required<any>();
   ngOnChanges(e: SimpleChanges): void {
@@ -29,9 +29,6 @@ export class CoreTextBoxComponent extends CoreFormControlBaseComponent implement
       this.writeValue(e['inputValue'].currentValue)
   }
   ngOnInit(): void {
-  }
-  override writeValue(obj: any): void {
-    this.value = obj;
   }
   ngOnDestroy(): void {
   }

@@ -38,7 +38,7 @@ export class ControlDemoComponent {
             value: false,
             type: 'boolean',
             flexSize: 3,
-            readonly: true,
+            readonly: false,
             hidden: false,
           },
           {
