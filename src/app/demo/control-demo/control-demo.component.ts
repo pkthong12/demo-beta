@@ -25,7 +25,7 @@ export class ControlDemoComponent {
             controlType: EnumFormBaseControlType.TEXTBOX,
             field: 'textbox',
             label: 'TEXTBOX',
-            value: 'dsdsds',
+            value: 'value Textbox',
             type: 'text',
             flexSize: 3,
             readonly: true,
@@ -48,14 +48,14 @@ export class ControlDemoComponent {
             value: '',
             type: 'text',
             flexSize: 3,
-            readonly: true,
-            hidden: false,
+            readonly: false,
+            hidden: true,
           }, {
             controlType: EnumFormBaseControlType.TEXTBOX,
             field: 'textbox2',
             label: 'TEXTBOX',
             value: '',
-            type: 'text',
+            type: 'number',
             flexSize: 3,
             readonly: false,
             hidden: false,
@@ -64,6 +64,11 @@ export class ControlDemoComponent {
                 name: IFnNameValidator.required,
                 validator: Validators.required,
                 errorMessage: 'This field is required'
+              },
+              {
+                name: IFnNameValidator.min,
+                validator: Validators.min(18),
+                errorMessage: 'You must be at least 18 years old'
               }
             ]
           },

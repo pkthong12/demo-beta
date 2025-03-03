@@ -43,7 +43,7 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
     this.subscriptions.push(
       this.rawControl?.statusChanges.subscribe(_ => {
         this.checkError();
-      })
+      }),
     )
     if (!!this.checkError$) {
       this.subscriptions.push(
@@ -93,6 +93,20 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
   onCreatedRequired(): void {
     if (this.control.validators) {
       this.isRequired = this.control.validators.some(x => x.name === IFnNameValidator.required);
+    }
+  }
+
+  onFocus(e: any) {
+    if (this.control.disabled || this.control.readonly) return;
+    this.control.focus$?.next(e);
+  }
+
+  onBlur(e: any) {
+    if (this.control.disabled || this.control.readonly) return;
+    const control = this.form.get(e);
+    this.control.blur$?.next(e);
+    if (control && control.invalid) {
+      control.markAsTouched();
     }
   }
 }

@@ -7,9 +7,11 @@
                 @for (row of section.rows; track $index) {
                 <div class="row mb15">
                     @for (col of row; track $index) {
-                    <div [class]="'col-md-' + col.flexSize">
-                        <core-control [control]="col" [form]="form" [checkError$]="checkError$"></core-control>
-                    </div>
+                        @if(col.hidden !== true){
+                        <div [class]="'col-md-' + col.flexSize">
+                            <core-control [control]="col" [form]="form" [checkError$]="checkError$"></core-control>
+                        </div>
+                        }
                     }
                 </div>
                 }
@@ -20,8 +22,12 @@
     <div class="row mt-3">
         <div class="col-md-12 ">
             <div class="row justify-content-center">
-                <div class="btn btn__primary col-md-3" (click)="onFormSubmit()"><p>Submit</p></div>
-                <div class="btn btn__secondary col-md-3" (click)="onFormReset()"><p>Reset</p></div>
+                <div class="btn btn__primary col-md-3" (click)="onFormSubmit()">
+                    <p>Submit</p>
+                </div>
+                <div class="btn btn__secondary col-md-3" (click)="onFormReset()">
+                    <p>Reset</p>
+                </div>
             </div>
         </div>
     </div>

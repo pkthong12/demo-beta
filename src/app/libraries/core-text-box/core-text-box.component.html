@@ -1,3 +1,4 @@
 <div>
-    <input [(ngModel)]="value" (ngModelChange)="writeValue($event)" class="form-control" [readOnly]="control().readonly">
+    <input [(ngModel)]="value" (ngModelChange)="writeValue($event)" class="form-control" [readOnly]="control().readonly"
+        [type]="control().type">
 </div>

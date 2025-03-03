@@ -1,4 +1,4 @@
-import { Component, input, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, effect, input, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { CoreFormControlBaseComponent } from '../core-form-control-base/core-form-control-base.component';
 import { IFormBaseControl } from '../../enum/enum-interfaces';
 import { CommonModule } from '@angular/common';
@@ -21,15 +21,19 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
   templateUrl: './core-text-box.component.html',
   styleUrl: './core-text-box.component.scss'
 })
-export class CoreTextBoxComponent extends CoreFormControlBaseComponent implements OnInit, OnChanges, OnDestroy {
+export class CoreTextBoxComponent extends CoreFormControlBaseComponent implements OnInit, OnDestroy {
   control = input.required<IFormBaseControl>();
-  inputValue= input.required<any>();
-  ngOnChanges(e: SimpleChanges): void {
-    if (e['inputValue'])
-      this.writeValue(e['inputValue'].currentValue)
+  inputValue = input.required<any>();
+
+  constructor() {
+    super();
+    effect(() => {
+      if (this.touched || this.control().value) {
+        this.writeValue(this.inputValue())
+      }
+    });
   }
   ngOnInit(): void {
-    console.log(this.control())
   }
   ngOnDestroy(): void {
   }

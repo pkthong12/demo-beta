@@ -1,8 +1,17 @@
-.core-control-container{
-    .control-label{
-        .label-value{
+.core-control-container {
+    .control-label {
+        .label-value {
             font-size: var(--font-size-label);
             color: var(--text-color);
         }
+    }
+
+    &>div.hidden {
+        display: none;
+    }
+
+    & span.required::after {
+        content: "*";
+        color: #FF040B;
     }
 }

@@ -2,14 +2,11 @@
     <div [formGroup]="form" [class.hidden]="!!control.hidden">
         <div class="w-100 d-flex flex-column justify-content-between">
             <label class="control-label pb-1">
-                <span class="label-value">
+                <span [class]="'label-value' +  (isRequired ? ' required' : '')">
                     @if(control.controlType === 'CHECKBOX' || !control.label){
                         &nbsp;
                     }@else {
                         {{control.label}}
-                        @if(isRequired){
-                            <span style="color: red;">*</span>
-                        }
                     }
                 </span>
             </label>
@@ -31,7 +28,7 @@
                     </div>
                 }
             }
-            @if(!!errors!.length && !!checkError$.value){
+            @if(!!errors!.length && errors.length == 0 && !!checkError$.value){
                 <div>
                     {{ '&nbsp;' }}
                 </div>
