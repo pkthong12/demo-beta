@@ -13,9 +13,7 @@ import { Validators } from '@angular/forms';
   styleUrl: './control-demo.component.scss'
 })
 export class ControlDemoComponent {
-
-
-  formName = 'dfd';
+  formName = 'DEMO';
 
   sections: ICoreFormSection[] = [
     {
@@ -40,6 +38,7 @@ export class ControlDemoComponent {
             flexSize: 3,
             readonly: false,
             hidden: false,
+            disabled:true
           },
           {
             controlType: EnumFormBaseControlType.TEXTBOX,
@@ -59,6 +58,7 @@ export class ControlDemoComponent {
             flexSize: 3,
             readonly: false,
             hidden: false,
+            disabled: true,
             validators: [
               {
                 name: IFnNameValidator.required,

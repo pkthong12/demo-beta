@@ -8,7 +8,7 @@ import { ICoreFormSection } from '../../enum/enum-interfaces';
 export class CoreControlService {
   constructor() { }
 
-  toGroup(sections: ICoreFormSection[]): any {
+  toFormGroup(sections: ICoreFormSection[]): any {
     const group: any = {};
 
     sections.forEach((section) => {
