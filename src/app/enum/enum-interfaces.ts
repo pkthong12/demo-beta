@@ -35,6 +35,7 @@ export interface IValidator {
 }
 
 export interface ICoreFormSection {
+  caption?: string;
   rows: IFormBaseControl[][];
 }
 

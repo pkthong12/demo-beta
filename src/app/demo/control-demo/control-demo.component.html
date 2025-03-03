@@ -1,1 +1,13 @@
-<core-form [formName]="formName" [inputSections]="sections" (onSubmit)="onSubmit($event)" (onCancel)="onCancel($event)"></core-form>
+<div class="row">
+    <div class="col-md-3">
+        <core-form [formName]="formName" [inputSections]="sectionsTxt" (onSubmit)="onSubmitTxt($event)"
+            (onCancel)="onCancel($event)"></core-form>
+    </div>
+    <div class="col-md-3">
+        <core-form [formName]="formName" [inputSections]="sectionsCkb" (onSubmit)="onSubmitCkb($event)"
+            (onCancel)="onCancel($event)"></core-form>
+    </div>
+    <div class="col-md-6">
+        <core-form [formName]="formName" [inputSections]="sections"></core-form>
+    </div>
+</div>

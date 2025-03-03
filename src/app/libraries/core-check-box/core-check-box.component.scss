@@ -51,7 +51,7 @@ input {
 }
 
 .core-checkbox-container:hover .checkmark {
-    background-color: var(--checkbox-hover-bg);
+    background-color: var(--primary-light);
 }
 
 input:checked ~ label .checkmark {
