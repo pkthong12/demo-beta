@@ -43,9 +43,10 @@ input {
         line-height: var(--checkbox-size);
         padding-left: calc(var(--checkbox-size) * 1.5);
         text-overflow: ellipsis;
-        max-width: calc(100% - var(--checkbox-size) * 4);
+        max-width: calc(100% - var(--checkbox-size) * 1);
         white-space: nowrap;
         font-size: var(--font-size-label);
+        overflow: hidden;
     }
 }
 

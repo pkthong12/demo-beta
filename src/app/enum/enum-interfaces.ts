@@ -17,9 +17,19 @@ export interface IFormBaseDropdownOption {
   key: string,
   value: string,
 }
-
+export enum IFnNameValidator {
+  required = 'required',
+  email = 'email',
+  minLength = 'minLength',
+  maxLength = 'maxLength',
+  pattern = 'pattern',
+  min = 'min',
+  max = 'max',
+  nullValidator = 'nullValidator',
+  unique = 'unique',
+}
 export interface IValidator {
-  name: string, // must equal the error key
+  name: IFnNameValidator, // must equal the error key
   validator: ValidatorFn,
   errorMessage: string,
 }

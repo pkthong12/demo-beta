@@ -2,7 +2,16 @@
     <div [formGroup]="form" [class.hidden]="!!control.hidden">
         <div class="w-100 d-flex flex-column justify-content-between">
             <label class="control-label pb-1">
-                <span class="label-value">{{control.controlType === 'CHECKBOX' || !control.label ? '&nbsp;':control.label}}</span>
+                <span class="label-value">
+                    @if(control.controlType === 'CHECKBOX' || !control.label){
+                        &nbsp;
+                    }@else {
+                        {{control.label}}
+                        @if(isRequired){
+                            <span style="color: red;">*</span>
+                        }
+                    }
+                </span>
             </label>
 
             @if(control.controlType == 'TEXTBOX'){
