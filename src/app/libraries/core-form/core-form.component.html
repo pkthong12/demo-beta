@@ -8,7 +8,7 @@
                             <div class="row mb15">
                                 @for (col of row; track $index) {
                                     <div [class]="'col-md-' + col.flexSize">
-                                        <core-control></core-control>
+                                        <core-control [control]="col" [form]="form"></core-control>
                                     </div>
                                 }
                             </div>
@@ -16,7 +16,6 @@
                     </div>
                 }
             </div>
-
         </div>
     </form>
 }

@@ -1,7 +1,7 @@
 import { ValidatorFn } from "@angular/forms";
 import { BehaviorSubject } from "rxjs";
 
-export enum EnumFormBaseContolType {
+export enum EnumFormBaseControlType {
   TEXTBOX = "TEXTBOX",
   TEXTAREA = "TEXTAREA",
   DROPDOWN = "DROPDOWN",
@@ -30,7 +30,7 @@ export interface ICoreFormSection {
 
 export interface IFormBaseControl {
   flexSize: number;
-  controlType: EnumFormBaseContolType,
+  controlType: EnumFormBaseControlType,
   field: string,
   label: string,
   value: any,

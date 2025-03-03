@@ -1,12 +1,13 @@
 <div class="core-control-container">
-    <div [class.hidden]="!!control.hidden">
+    <div [formGroup]="form" [class.hidden]="!!control.hidden">
         <div class="w-100 d-flex flex-column justify-content-between">
             <label class="control-label pb-1">
-                <strong>{{ control.label }}</strong>
+                <span class="label-value">{{control.controlType === 'CHECKBOX' || !control.label ? '&nbsp;':control.label}}</span>
             </label>
 
             @if(control.controlType == 'TEXTBOX'){
-            <core-text-box [formControlName]="control.field" [inputValue]="control.value"></core-text-box>
+            <core-text-box [formControlName]="control.field" [inputValue]="control.value"
+                [control]="control"></core-text-box>
             }
             @else if (control.controlType == 'CHECKBOX') {
             <core-check-box [formControlName]="control.field" [text]="control.label"

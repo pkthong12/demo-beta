@@ -4,7 +4,7 @@ input {
 }
 .core-checkbox-container {
 
-    --checkbox-size: 15px;
+    --checkbox-size: 18px;
     --checkbox-border-color: #B9B9B9;
     --checkbox-hover-bg: #B9B9B9;
     --checkbox-bg: transparent;
@@ -12,7 +12,6 @@ input {
     --checkbox-color: #FFFFFF;
     --checkbox-border-radius: 3px;
     --font-size: 15px;
-    --text-color: gray;
     
     display: inline-block;
     align-items: center;
@@ -46,16 +45,14 @@ input {
         text-overflow: ellipsis;
         max-width: calc(100% - var(--checkbox-size) * 4);
         white-space: nowrap;
-        font-size: 13px;
+        font-size: var(--font-size-label);
     }
 }
 
-/* On mouse-over, add a grey background color */
 .core-checkbox-container:hover .checkmark {
     background-color: var(--checkbox-hover-bg);
 }
 
-/* When the checkbox is checked, add background */
 input:checked ~ label .checkmark {
     background-color: white;
     border-color: #848484;
@@ -69,19 +66,16 @@ input:checked ~ label .disabled {
     border-color: grey;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-/* Show the checkmark when checked */
 input:checked ~ label .checkmark:after {
     display: block;
 }
 
-/* Style the checkmark/indicator */
 .core-checkbox-container .checkmark:after {
     width: 9px;
     height: 4px;

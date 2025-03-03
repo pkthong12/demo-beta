@@ -4,7 +4,7 @@ import { CoreTextBoxComponent } from '../core-text-box/core-text-box.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseComponent } from '../base-component/base-component.component';
 import { CommonModule } from '@angular/common';
-import { IFormBaseControl } from '../../enum/enum-interfaces';
+import { EnumFormBaseControlType, IFormBaseControl } from '../../enum/enum-interfaces';
 
 @Component({
   selector: 'core-control',

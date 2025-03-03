@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { CoreControlComponent } from '../core-control/core-control.component';
 
 @Component({
-  selector: 'app-core-form',
+  selector: 'core-form',
   standalone: true,
   imports: [
     CommonModule,
@@ -70,7 +70,7 @@ export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDe
       } else {
         this.updateSections(newSections);
       }
-
+      console.log(this.form)
       this.onFormCreated.emit({
         formName: this.formName,
         formGroup: this.form,

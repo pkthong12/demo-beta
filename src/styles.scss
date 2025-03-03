@@ -1,3 +1,8 @@
+:root {
+    --font-size-label: 13px;
+    --text-color: gray;
+}
+
 .form-control {
     display: block;
     height: 30px;
@@ -12,6 +17,7 @@
     line-height: 1.5;
     transition: border-color 0.15sease-in-out, box-shadow 0.15sease-in-out;
 }
+
 .form-control:focus {
     background-color: #fff;
     border-color: #fa9b6f;
@@ -20,6 +26,7 @@
     background: #fff;
     color: #6e6e6e;
 }
+
 .form-control-disabled {
     user-select: none !important;
     -webkit-user-select: none !important;
