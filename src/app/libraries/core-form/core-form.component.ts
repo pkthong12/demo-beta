@@ -63,11 +63,13 @@ export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDe
 
         let form: FormGroup<any>;
 
-        const mainGroup = this.coreControlService.toGroup(this.sections);
+        const mainGroup = this.coreControlService.toFormGroup(this.sections);
 
         form = new FormGroup(mainGroup);
 
         this.form = form;
+
+        console.log(form)
 
       } else {
         this.updateSections(newSections);
