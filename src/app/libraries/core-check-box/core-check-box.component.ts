@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, effect, EventEmitter, input, Input, OnChanges, OnDestroy, OnInit, output, Output, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CoreFormControlBaseComponent } from '../core-form-control-base/core-form-control-base.component';
 
@@ -20,20 +20,19 @@ import { CoreFormControlBaseComponent } from '../core-form-control-base/core-for
   templateUrl: './core-check-box.component.html',
   styleUrl: './core-check-box.component.scss'
 })
-export class CoreCheckBoxComponent extends CoreFormControlBaseComponent implements OnInit, OnChanges {
-  @Input() text!: string;
-  @Input() inputValue!: boolean;
+export class CoreCheckBoxComponent extends CoreFormControlBaseComponent {
+  text = input<string>('');
+  inputValue = input<boolean>(false);
 
-  @Output() onClick = new EventEmitter<boolean>();
+  onClick = output<boolean>();
 
 
-  ngOnChanges(e: SimpleChanges): void {
-    if (!!e['inputValue'])
-      this.writeValue(e['inputValue'].currentValue)
+  constructor() {
+    super();
+    effect(() => {
+      this.writeValue(this.inputValue());
+    });
   }
-  ngOnInit(): void {
-  }
-
   onLabelClick(_: any) {
     if (this.disabled == true || this.readonly == true) {
       return

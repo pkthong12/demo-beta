@@ -85,6 +85,7 @@ export class CoreFormComponent extends BaseComponent {
   onFormSubmit() {
     this.checkError$.next(true);
     if (!!this.form.valid) {
+      console.log(this.form.getRawValue());
       this.onSubmit.emit(this.form?.getRawValue());
     }
   }
