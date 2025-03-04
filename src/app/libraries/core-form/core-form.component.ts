@@ -32,7 +32,7 @@ export class CoreFormComponent extends BaseComponent {
 
   form!: FormGroup;
   sections = this.inputSections;
-
+  prevSections!: ICoreFormSection[];
   /**
    *
    */
@@ -42,12 +42,10 @@ export class CoreFormComponent extends BaseComponent {
   ) {
     super();
     effect(() => {
-      // const newSections = this.inputSections();
-      // console.log(JSON.stringify(newSections))
       this.onBuildForm();
     })
   }
-  private updateSections(newSections: ICoreFormSection[]): void {
+  updateSections(newSections: ICoreFormSection[]): void {
     this.sections().map((section, sectionIndex) => {
       const newSection = newSections[sectionIndex];
       section.rows.map((row, rowIndex) => {
@@ -68,18 +66,22 @@ export class CoreFormComponent extends BaseComponent {
       const mainGroup = this.coreControlService.toFormGroup(this.sections());
       form = new FormGroup(mainGroup);
       this.form = form;
-      this.changeDetectorRef.detectChanges();
     } else {
       this.updateSections(newSections);
-      this.changeDetectorRef.detectChanges();
     }
+
+    this.prevSections = newSections;
     this.onFormCreated.emit({
       formName: this.formName,
       formGroup: this.form,
     });
+    
+    this.changeDetectorRef.detectChanges();
+
   }
   onFormSubmit() {
     this.checkError$.next(true);
+    console.log(this.form.valid);
     if (!!this.form.valid) {
       this.onSubmit.emit(this.form?.getRawValue());
     }

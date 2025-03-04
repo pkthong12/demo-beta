@@ -2,7 +2,7 @@
     <div [formGroup]="form()" [class.hidden]="!!control().hidden">
         <div class="w-100 d-flex flex-column justify-content-between">
             <label class="control-label pb-1">
-                <span [class]="'label-value' +  (isRequired ? ' required' : '')">
+                <span [class]="'label-value' +  (isRequired() ? ' required' : '')">
                     @if(control().controlType === 'CHECKBOX' || !control().label){
                         &nbsp;
                     }@else {
@@ -12,17 +12,17 @@
             </label>
 
             @if(control().controlType == 'TEXTBOX'){
-            <core-text-box [formControlName]="control().field" [inputValue]="control().value"
-                [control]="control()"></core-text-box>
+                <core-text-box [formControlName]="control().field" [inputValue]="control().value"
+                    [control]="control()"></core-text-box>
             }
             @else if (control().controlType == 'CHECKBOX') {
-            <core-check-box [formControlName]="control().field" [text]="control().label"
-                [inputValue]="control().value"></core-check-box>
+                <core-check-box [formControlName]="control().field" [text]="control().label"
+                    [inputValue]="control().value"></core-check-box>
             }
 
             <!-- Messages error -->
-            @if(!!errors!.length){
-                @for (error of errors; track $index) {
+            @if(!!errors().length){
+                @for (error of errors(); track $index) {
                     <div class="form-control-error">
                         {{ error.errorMessage }}
                     </div>

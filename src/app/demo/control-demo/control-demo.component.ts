@@ -218,6 +218,13 @@ export class ControlDemoComponent {
             flexSize: 4,
             readonly: false,
             hidden: false,
+            validators: [
+              {
+                name: IFnNameValidator.required,
+                validator: Validators.required,
+                errorMessage: 'This field is required'
+              }
+            ]
           },
           {
             controlType: EnumFormBaseControlType.CHECKBOX,
@@ -234,7 +241,6 @@ export class ControlDemoComponent {
     }
   ]);
   onSubmitTxt($event: any) {
-    console.log($event)
     let control: IFormBaseControl = this.convertToControl($event);
     control.field = 'textbox';
     control.controlType = EnumFormBaseControlType.TEXTBOX;
