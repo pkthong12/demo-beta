@@ -196,7 +196,7 @@ export class ControlDemoComponent {
   ];
   sections: ICoreFormSection[] = [
     {
-      caption: 'For Preview',
+      caption: 'For Example',
       rows: [
         [
           {
@@ -226,12 +226,16 @@ export class ControlDemoComponent {
 
   onSubmitTxt($event: any) {
     let control: IFormBaseControl = this.convertToControl($event);
+    control.field = 'textbox';
+    control.controlType = EnumFormBaseControlType.TEXTBOX;
     this.sections[0].rows[0][0] = control;
   }
 
 
   onSubmitCkb($event: any) {
     let control: IFormBaseControl = this.convertToControl($event);
+    control.controlType = EnumFormBaseControlType.CHECKBOX;
+    control.field = 'checkbox';
     this.sections[0].rows[0][1] = control;
   }
   onCancel($event: any) {

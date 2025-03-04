@@ -39,7 +39,6 @@ export class CoreFormComponent implements OnChanges, OnInit, AfterViewInit, OnDe
   ) {
   }
   private updateSections(newSections: ICoreFormSection[]): void {
-
     this.sections.map((section, sectionIndex) => {
       const newSection = newSections[sectionIndex];
       section.rows.map((row, rowIndex) => {

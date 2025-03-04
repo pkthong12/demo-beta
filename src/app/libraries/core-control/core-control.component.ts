@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, effect, input, Input, OnDestroy, OnInit } from '@angular/core';
 import { CoreCheckBoxComponent } from '../core-check-box/core-check-box.component';
 import { CoreTextBoxComponent } from '../core-text-box/core-text-box.component';
 import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +26,7 @@ interface IError {
   styleUrl: './core-control.component.scss'
 })
 export class CoreControlComponent extends BaseComponent implements OnInit, OnDestroy {
-  @Input() control!: IFormBaseControl;
+  control = input.required<IFormBaseControl>();
   @Input() form!: FormGroup;
   @Input() checkError$!: BehaviorSubject<boolean>;
 
@@ -35,10 +35,20 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
   isRequired: boolean = false;
   errors: IError[] = [];
 
+  constructor() {
+    super();
+    effect(() => {
+      this.onCreatedControl();
+    });
+  }
+
   ngOnInit(): void {
+    this.onCreatedControl();
+  }
+  onCreatedControl(): void {
     this.onCreatedRequired();
 
-    this.rawControl = this.form.get(this.control.field)!;
+    this.rawControl = this.form.get(this.control().field)!;
 
     this.subscriptions.push(
       this.rawControl?.statusChanges.subscribe(_ => {
@@ -57,20 +67,22 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
       )
     }
   }
-
   checkError(): void {
     if (this.rawControl.errors) {
       const newErrors: IError[] = [];
-      Object.keys(this.form.controls[this.control.field].errors!).forEach(key => {
+      Object.keys(this.form.controls[this.control().field].errors!).forEach(key => {
 
-        if (this.form.controls[this.control.field].errors![key] instanceof Array) {
+        if (this.form.controls[this.control().field].errors![key] instanceof Array) {
           newErrors.push({
             key: key,
-            errorMessage: this.form.controls[this.control.field].errors![key][1]
+            errorMessage: this.form.controls[this.control().field].errors![key][1]
           })
         } else {
-          if (!!this.control.validators) {
-            const filter = this.control.validators?.filter(x => x.name.toLowerCase() === key.toLowerCase())
+          if (!!this.control().validators) {
+            const filter = this.control().validators?.filter(x => x.name.toLowerCase() === key.toLowerCase())
+            if (!filter || !filter.length) {
+              return;
+            }
             if (!!filter.length) {
               newErrors.push({
                 key: key,
@@ -91,20 +103,20 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
   }
 
   onCreatedRequired(): void {
-    if (this.control.validators) {
-      this.isRequired = this.control.validators.some(x => x.name === IFnNameValidator.required);
+    if (this.control().validators) {
+      this.isRequired = this.control().validators?.some(x => x.name === IFnNameValidator.required) || false;
     }
   }
 
   onFocus(e: any) {
-    if (this.control.disabled || this.control.readonly) return;
-    this.control.focus$?.next(e);
+    if (this.control().disabled || this.control().readonly) return;
+    this.control().focus$?.next(e);
   }
 
   onBlur(e: any) {
-    if (this.control.disabled || this.control.readonly) return;
+    if (this.control().disabled || this.control().readonly) return;
     const control = this.form.get(e);
-    this.control.blur$?.next(e);
+    this.control().blur$?.next(e);
     if (control && control.invalid) {
       control.markAsTouched();
     }

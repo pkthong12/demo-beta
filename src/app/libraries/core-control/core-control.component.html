@@ -1,23 +1,23 @@
 <div class="core-control-container">
-    <div [formGroup]="form" [class.hidden]="!!control.hidden">
+    <div [formGroup]="form" [class.hidden]="!!control().hidden">
         <div class="w-100 d-flex flex-column justify-content-between">
             <label class="control-label pb-1">
                 <span [class]="'label-value' +  (isRequired ? ' required' : '')">
-                    @if(control.controlType === 'CHECKBOX' || !control.label){
+                    @if(control().controlType === 'CHECKBOX' || !control().label){
                         &nbsp;
                     }@else {
-                        {{control.label}}
+                        {{control().label}}
                     }
                 </span>
             </label>
 
-            @if(control.controlType == 'TEXTBOX'){
-            <core-text-box [formControlName]="control.field" [inputValue]="control.value"
-                [control]="control"></core-text-box>
+            @if(control().controlType == 'TEXTBOX'){
+            <core-text-box [formControlName]="control().field" [inputValue]="control().value"
+                [control]="control()"></core-text-box>
             }
-            @else if (control.controlType == 'CHECKBOX') {
-            <core-check-box [formControlName]="control.field" [text]="control.label"
-                [inputValue]="control.value"></core-check-box>
+            @else if (control().controlType == 'CHECKBOX') {
+            <core-check-box [formControlName]="control().field" [text]="control().label"
+                [inputValue]="control().value"></core-check-box>
             }
 
             <!-- Messages error -->
