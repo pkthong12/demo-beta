@@ -39,5 +39,11 @@
             </div>
         </div>
     </form>
+
+    @if(payLoad){
+        <div class="form-row payload-preview">
+            <strong>Current values</strong><br>{{payLoad}}
+        </div>
+    }
 </div>
 }

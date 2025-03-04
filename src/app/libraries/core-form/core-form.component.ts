@@ -33,6 +33,9 @@ export class CoreFormComponent extends BaseComponent {
   form!: FormGroup;
   sections = this.inputSections;
   prevSections!: ICoreFormSection[];
+
+  payLoad!: any;
+
   /**
    *
    */
@@ -84,8 +87,8 @@ export class CoreFormComponent extends BaseComponent {
   }
   onFormSubmit() {
     this.checkError$.next(true);
+    this.payLoad = JSON.stringify(this.form.getRawValue(), null, 2)
     if (!!this.form.valid) {
-      console.log(this.form.getRawValue());
       this.onSubmit.emit(this.form?.getRawValue());
     }
   }
