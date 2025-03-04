@@ -25,9 +25,9 @@ interface IError {
   templateUrl: './core-control.component.html',
   styleUrl: './core-control.component.scss'
 })
-export class CoreControlComponent extends BaseComponent implements OnInit, OnDestroy {
+export class CoreControlComponent extends BaseComponent {
   control = input.required<IFormBaseControl>();
-  @Input() form!: FormGroup;
+  form = input.required<FormGroup>();
   @Input() checkError$!: BehaviorSubject<boolean>;
 
   rawControl!: AbstractControl;
@@ -42,13 +42,10 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
     });
   }
 
-  ngOnInit(): void {
-    this.onCreatedControl();
-  }
   onCreatedControl(): void {
     this.onCreatedRequired();
 
-    this.rawControl = this.form.get(this.control().field)!;
+    this.rawControl = this.form().get(this.control().field)!;
 
     this.subscriptions.push(
       this.rawControl?.statusChanges.subscribe(_ => {
@@ -70,12 +67,11 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
   checkError(): void {
     if (this.rawControl.errors) {
       const newErrors: IError[] = [];
-      Object.keys(this.form.controls[this.control().field].errors!).forEach(key => {
-
-        if (this.form.controls[this.control().field].errors![key] instanceof Array) {
+      Object.keys(this.form().controls[this.control().field].errors!).forEach(key => {
+        if (this.form().controls[this.control().field].errors![key] instanceof Array) {
           newErrors.push({
             key: key,
-            errorMessage: this.form.controls[this.control().field].errors![key][1]
+            errorMessage: this.form().controls[this.control().field].errors![key][1]
           })
         } else {
           if (!!this.control().validators) {
@@ -107,7 +103,6 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
       this.isRequired = this.control().validators?.some(x => x.name === IFnNameValidator.required) || false;
     }
   }
-
   onFocus(e: any) {
     if (this.control().disabled || this.control().readonly) return;
     this.control().focus$?.next(e);
@@ -115,7 +110,7 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnDes
 
   onBlur(e: any) {
     if (this.control().disabled || this.control().readonly) return;
-    const control = this.form.get(e);
+    const control = this.form().get(e);
     this.control().blur$?.next(e);
     if (control && control.invalid) {
       control.markAsTouched();

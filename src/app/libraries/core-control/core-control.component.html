@@ -1,5 +1,5 @@
 <div class="core-control-container">
-    <div [formGroup]="form" [class.hidden]="!!control().hidden">
+    <div [formGroup]="form()" [class.hidden]="!!control().hidden">
         <div class="w-100 d-flex flex-column justify-content-between">
             <label class="control-label pb-1">
                 <span [class]="'label-value' +  (isRequired ? ' required' : '')">

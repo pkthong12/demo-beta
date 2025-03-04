@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CoreFormComponent } from '../../libraries/core-form/core-form.component';
 import { EnumFormBaseControlType, ICoreFormSection, IFnNameValidator, IFormBaseControl } from '../../enum/enum-interfaces';
 import { Validators } from '@angular/forms';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'control-demo',
   standalone: true,
   imports: [
+    CommonModule,
     CoreFormComponent
   ],
   templateUrl: './control-demo.component.html',
@@ -50,6 +53,13 @@ export class ControlDemoComponent {
             flexSize: 12,
             readonly: false,
             hidden: false,
+            validators: [
+              {
+                name: IFnNameValidator.required,
+                validator: Validators.required,
+                errorMessage: 'This field is required'
+              }
+            ]
           },
           {
             controlType: EnumFormBaseControlType.TEXTBOX,
@@ -194,7 +204,7 @@ export class ControlDemoComponent {
       ]
     }
   ];
-  sections: ICoreFormSection[] = [
+  sections = signal<ICoreFormSection[]>([
     {
       caption: 'For Example',
       rows: [
@@ -222,23 +232,36 @@ export class ControlDemoComponent {
         ]
       ]
     }
-  ];
-
+  ]);
   onSubmitTxt($event: any) {
+    console.log($event)
     let control: IFormBaseControl = this.convertToControl($event);
     control.field = 'textbox';
     control.controlType = EnumFormBaseControlType.TEXTBOX;
-    this.sections[0].rows[0][0] = control;
+    this.onSetSection(0, 0, control);
   }
-
 
   onSubmitCkb($event: any) {
     let control: IFormBaseControl = this.convertToControl($event);
     control.controlType = EnumFormBaseControlType.CHECKBOX;
     control.field = 'checkbox';
-    this.sections[0].rows[0][1] = control;
+    this.onSetSection(0, 1, control);
   }
-  onCancel($event: any) {
+
+  onSetSection(_rowIndex: number, _controlIndex: number, control: IFormBaseControl) {
+    this.sections.set([...this.sections().map((section, sectionIndex) => {
+      if (sectionIndex === 0) {
+        return {
+          ...section,
+          rows: section.rows.map((row, rowIndex) =>
+            rowIndex === _rowIndex ? row.map((ctrl, ctrlIndex) =>
+              ctrlIndex === _controlIndex ? control : ctrl
+            ) : row
+          )
+        };
+      }
+      return section;
+    })]);
   }
   convertToControl(control: any): IFormBaseControl {
     control.validators = [];
@@ -251,5 +274,10 @@ export class ControlDemoComponent {
     }
     return control as IFormBaseControl;
   }
+  onCancel($event: any) {
+  }
 
+  get sectionsValue(): ICoreFormSection[] {
+    return this.sections() ?? [];
+  }
 }
