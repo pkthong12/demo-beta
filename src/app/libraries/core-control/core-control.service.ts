@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { ICoreFormSection } from '../../enum/enum-interfaces';
 
 @Injectable({
@@ -34,5 +34,58 @@ export class CoreControlService {
       });
     });
     return group;
+  }
+
+  updateFormGroup(existingForm: FormGroup, newControls: { [key: string]: FormControl }) {
+    Object.keys(newControls).forEach(key => {
+      if (existingForm.contains(key)) {
+        const oldControl = existingForm.get(key);
+        const newControl = newControls[key];
+
+        if (oldControl) {
+          let hasChanges = false;
+
+          // Cập nhật validators nếu thay đổi
+          const oldValidators = oldControl.validator ? oldControl.validator({} as AbstractControl) : null;
+          const newValidators = newControl.validator ? newControl.validator({} as AbstractControl) : null;
+          if (JSON.stringify(oldValidators) !== JSON.stringify(newValidators)) {
+            oldControl.setValidators(newControl.validator);
+            hasChanges = true;
+          }
+
+          // Cập nhật async validators nếu thay đổi
+          const oldAsyncValidators = oldControl.asyncValidator ? oldControl.asyncValidator({} as AbstractControl) : null;
+          const newAsyncValidators = newControl.asyncValidator ? newControl.asyncValidator({} as AbstractControl) : null;
+          if (JSON.stringify(oldAsyncValidators) !== JSON.stringify(newAsyncValidators)) {
+            oldControl.setAsyncValidators(newControl.asyncValidator);
+            hasChanges = true;
+          }
+
+          // Cập nhật giá trị nếu thay đổi
+          if (oldControl.value !== newControl.value) {
+            oldControl.setValue(newControl.value, { emitEvent: false });
+            hasChanges = true;
+          }
+
+          // Cập nhật trạng thái enabled/disabled
+          if (newControl.disabled && !oldControl.disabled) {
+            oldControl.disable({ emitEvent: false });
+            hasChanges = true;
+          } else if (!newControl.disabled && oldControl.disabled) {
+            oldControl.enable({ emitEvent: false });
+            hasChanges = true;
+          }
+
+          if (hasChanges) {
+            oldControl.updateValueAndValidity({ emitEvent: false });
+          }
+        }
+      } else {
+        // Thêm control mới nếu chưa tồn tại
+        existingForm.addControl(key, newControls[key]);
+      }
+    });
+
+    existingForm.updateValueAndValidity({ emitEvent: false });
   }
 }

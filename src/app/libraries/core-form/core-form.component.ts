@@ -45,29 +45,32 @@ export class CoreFormComponent extends BaseComponent {
       this.onBuildForm();
     })
   }
-  updateSections(newSections: ICoreFormSection[]): void {
-    this.sections().map((section, sectionIndex) => {
-      const newSection = newSections[sectionIndex];
-      section.rows.map((row, rowIndex) => {
-        const newRow = newSection.rows[rowIndex];
-        row.map((control, controlIndex) => {
-          const newControl = newRow[controlIndex];
-          control.hidden = newControl?.hidden;
-        });
-      });
+  //with signal, this is not necessary
+  // updateSections(newSections: ICoreFormSection[]): void {
+  //   this.sections().map((section, sectionIndex) => {
+  //     const newSection = newSections[sectionIndex];
+  //     section.rows.map((row, rowIndex) => {
+  //       const newRow = newSection.rows[rowIndex];
+  //       row.map((control, controlIndex) => {
+  //         const newControl = newRow[controlIndex];
+  //         control.hidden = newControl?.hidden;
+  //       });
+  //     });
 
-    });
+  //   });
 
-  }
+  // }
   onBuildForm(): void {
     let newSections: ICoreFormSection[] = this.inputSections();
-    if (!this.form) {
+    if (!this.form && JSON.stringify(newSections) !== JSON.stringify(this.prevSections)) {
       let form: FormGroup<any>;
-      const mainGroup = this.coreControlService.toFormGroup(this.sections());
+      const mainGroup = this.coreControlService.toFormGroup(newSections);
       form = new FormGroup(mainGroup);
       this.form = form;
     } else {
-      this.updateSections(newSections);
+      const newControls = this.coreControlService.toFormGroup(this.sections());
+      this.coreControlService.updateFormGroup(this.form, newControls);
+      // this.updateSections(newSections);
     }
 
     this.prevSections = newSections;
@@ -75,13 +78,12 @@ export class CoreFormComponent extends BaseComponent {
       formName: this.formName,
       formGroup: this.form,
     });
-    
+
     this.changeDetectorRef.detectChanges();
 
   }
   onFormSubmit() {
     this.checkError$.next(true);
-    console.log(this.form.valid);
     if (!!this.form.valid) {
       this.onSubmit.emit(this.form?.getRawValue());
     }

@@ -218,13 +218,13 @@ export class ControlDemoComponent {
             flexSize: 4,
             readonly: false,
             hidden: false,
-            validators: [
-              {
-                name: IFnNameValidator.required,
-                validator: Validators.required,
-                errorMessage: 'This field is required'
-              }
-            ]
+            // validators: [
+            //   {
+            //     name: IFnNameValidator.required,
+            //     validator: Validators.required,
+            //     errorMessage: 'This field is required'
+            //   }
+            // ]
           },
           {
             controlType: EnumFormBaseControlType.CHECKBOX,

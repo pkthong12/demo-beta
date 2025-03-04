@@ -25,7 +25,7 @@ interface IError {
   templateUrl: './core-control.component.html',
   styleUrl: './core-control.component.scss'
 })
-export class CoreControlComponent extends BaseComponent implements OnInit, OnChanges {
+export class CoreControlComponent extends BaseComponent implements OnInit {
   control = input.required<IFormBaseControl>();
   form = input.required<FormGroup>();
   @Input() checkError$!: BehaviorSubject<boolean>;
@@ -41,11 +41,6 @@ export class CoreControlComponent extends BaseComponent implements OnInit, OnCha
       this.watchRawControlStatus();
       this.watchCheckError();
     }, { allowSignalWrites: true });
-  }
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['form']) {
-      console.log(changes['form'])
-    }
   }
 
   ngOnInit() {
