@@ -4,13 +4,9 @@ import { CoreTextBoxComponent } from '../core-text-box/core-text-box.component';
 import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseComponent } from '../base-component/base-component.component';
 import { CommonModule } from '@angular/common';
-import { IFnNameValidator, IFormBaseControl } from '../../enum/enum-interfaces';
+import { IError, IFnNameValidator, IFormBaseControl } from '../../enum/enum-interfaces';
 import { BehaviorSubject } from 'rxjs';
 
-interface IError {
-  key: string,
-  errorMessage: string
-}
 
 @Component({
   selector: 'core-control',

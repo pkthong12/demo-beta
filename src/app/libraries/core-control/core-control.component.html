@@ -11,13 +11,19 @@
                 </span>
             </label>
 
-            @if(control().controlType == 'TEXTBOX'){
-                <core-text-box [formControlName]="control().field" [inputValue]="control().value"
+            @switch (control().controlType) {
+                @case('TEXTBOX') {
+                    <core-text-box [formControlName]="control().field" [inputValue]="control().value"
                     [control]="control()"></core-text-box>
-            }
-            @else if (control().controlType == 'CHECKBOX') {
-                <core-check-box [formControlName]="control().field" [text]="control().label"
-                    [inputValue]="control().value"></core-check-box>
+                }
+                @case('CHECKBOX') {
+                    <core-check-box [formControlName]="control().field" [text]="control().label"
+                        [inputValue]="control().value"></core-check-box>
+                }
+                @default {
+                    <core-text-box [formControlName]="control().field" [inputValue]="control().value"
+                    [control]="control()"></core-text-box>
+                }
             }
 
             <!-- Messages error -->
@@ -28,11 +34,11 @@
                     </div>
                 }
             }
-            @if(!!errors!.length && errors.length == 0 && !!checkError$.value){
+            @if(!!errors!.length && errors().length == 0 && !!checkError$.value){
                 <div>
                     {{ '&nbsp;' }}
                 </div>
-            }    
+            }
         </div>
     </div>
 

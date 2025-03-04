@@ -33,6 +33,11 @@ export interface IValidator {
   validator: ValidatorFn,
   errorMessage: string,
 }
+export interface IError {
+  key: string,
+  errorMessage: string
+}
+
 
 export interface ICoreFormSection {
   caption?: string;
