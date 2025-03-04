@@ -65,14 +65,11 @@ export class CoreFormComponent extends BaseComponent {
   // }
   onBuildForm(): void {
     let newSections: ICoreFormSection[] = this.inputSections();
+    const mainGroup = this.coreControlService.toFormGroup(this.sections());
     if (!this.form && JSON.stringify(newSections) !== JSON.stringify(this.prevSections)) {
-      let form: FormGroup<any>;
-      const mainGroup = this.coreControlService.toFormGroup(newSections);
-      form = new FormGroup(mainGroup);
-      this.form = form;
+      this.form = new FormGroup(mainGroup);
     } else {
-      const newControls = this.coreControlService.toFormGroup(this.sections());
-      this.coreControlService.updateFormGroup(this.form, newControls);
+      this.coreControlService.updateFormGroup(this.form, mainGroup);
       // this.updateSections(newSections);
     }
 
