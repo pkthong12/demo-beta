@@ -29,7 +29,7 @@ export enum IFnNameValidator {
   unique = 'unique',
 }
 export interface IValidator {
-  name: IFnNameValidator, // must equal the error key
+  name: IFnNameValidator | string,
   validator: ValidatorFn,
   errorMessage: string,
 }

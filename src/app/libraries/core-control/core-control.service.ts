@@ -33,6 +33,8 @@ export class CoreControlService {
         });
       });
     });
+    console.log(group)
+
     return group;
   }
 

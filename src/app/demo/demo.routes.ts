@@ -6,9 +6,11 @@ export const routes: Routes = [
         path: "",
         redirectTo: "control",
         pathMatch: "full",
-      },
+    },
     {
         path: 'control',
-        component: ControlDemoComponent,
+        loadComponent() {
+            return import('./control-demo/control-demo.component').then(m => m.ControlDemoComponent);
+        }
     }
 ];

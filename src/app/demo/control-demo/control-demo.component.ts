@@ -1,9 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CoreFormComponent } from '../../libraries/core-form/core-form.component';
 import { EnumFormBaseControlType, ICoreFormSection, IFnNameValidator, IFormBaseControl } from '../../enum/enum-interfaces';
-import { Validators } from '@angular/forms';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { AbstractControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CustomValidators } from '../../libraries/core-form/custom-validators';
 
 @Component({
   selector: 'control-demo',
@@ -169,6 +169,13 @@ export class ControlDemoComponent {
             flexSize: 12,
             readonly: false,
             hidden: false,
+            validators: [
+              {
+                name: 'testCustomValidation',
+                validator: ControlDemoComponent.testCustomValidation,
+                errorMessage: 'This field is required'
+              }
+            ]
           },
           {
             controlType: EnumFormBaseControlType.CHECKBOX,
@@ -218,13 +225,6 @@ export class ControlDemoComponent {
             flexSize: 4,
             readonly: false,
             hidden: false,
-            // validators: [
-            //   {
-            //     name: IFnNameValidator.required,
-            //     validator: Validators.required,
-            //     errorMessage: 'This field is required'
-            //   }
-            // ]
           },
           {
             controlType: EnumFormBaseControlType.CHECKBOX,
@@ -281,6 +281,11 @@ export class ControlDemoComponent {
     return control as IFormBaseControl;
   }
   onCancel($event: any) {
+  }
+
+
+  static testCustomValidation(control: AbstractControl): any | null {
+    return CustomValidators.core('testCustomValidation', false,'Loiiii ne');
   }
 
   get sectionsValue(): ICoreFormSection[] {
