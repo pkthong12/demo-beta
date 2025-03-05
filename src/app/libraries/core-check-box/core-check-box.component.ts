@@ -23,7 +23,7 @@ import { CoreFormControlBaseComponent } from '../core-form-control-base/core-for
 export class CoreCheckBoxComponent extends CoreFormControlBaseComponent {
   text = input<string>('');
   inputValue = input<boolean>(false);
-
+  @Input({ transform: (value: any) => value !== null && value !== undefined ? value : false }) override disabled!: boolean;
   onClick = output<boolean>();
 
 

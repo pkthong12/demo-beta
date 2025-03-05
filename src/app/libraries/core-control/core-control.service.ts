@@ -38,7 +38,7 @@ export class CoreControlService {
 
   updateFormGroup(existingForm: FormGroup, newControls: { [key: string]: FormControl }) {
     Object.keys(newControls).forEach(key => {
-      if (existingForm.contains(key)) {
+      if (existingForm.controls[key]) {
         const oldControl = existingForm.get(key);
         const newControl = newControls[key];
 
@@ -81,7 +81,6 @@ export class CoreControlService {
           }
         }
       } else {
-        // Thêm control mới nếu chưa tồn tại
         existingForm.addControl(key, newControls[key]);
       }
     });
