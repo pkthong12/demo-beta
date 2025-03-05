@@ -6,8 +6,6 @@ import { ICoreFormSection } from '../../enum/enum-interfaces';
   providedIn: 'root',
 })
 export class CoreControlService {
-  constructor() { }
-
   toFormGroup(sections: ICoreFormSection[]): any {
     const group: any = {};
     if (!sections) return group;
@@ -33,8 +31,6 @@ export class CoreControlService {
         });
       });
     });
-    console.log(group)
-
     return group;
   }
 
