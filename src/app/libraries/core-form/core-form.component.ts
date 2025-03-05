@@ -84,7 +84,7 @@ export class CoreFormComponent extends BaseComponent {
   }
   onFormSubmit() {
     this.checkError$.next(true);
-    this.payLoad = JSON.stringify(this.form.getRawValue(), null, 2)
+    this.payLoad = JSON.stringify(this.form.getRawValue(), null, 2);
     if (!!this.form.valid) {
       this.onSubmit.emit(this.form?.getRawValue());
     }
