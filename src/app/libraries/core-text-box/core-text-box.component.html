@@ -1,5 +1,6 @@
 <div>
     <input [(ngModel)]="value" (ngModelChange)="writeValue($event)" class="form-control"
         [readOnly]="control().readonly ||control().disabled" [type]="control().type"
-        [class.form-control-disabled]="control().disabled">
+        [class.form-control-disabled]="control().disabled" (focus)="onFocus.emit($event)"
+        (blur)="onBlur.emit($event)">
 </div>

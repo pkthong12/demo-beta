@@ -93,7 +93,7 @@ export class CoreControlComponent extends BaseComponent implements OnInit {
 
   onBlur(e: any) {
     if (this.control().disabled || this.control().readonly) return;
-    const control = this.form().get(e);
+    const control = this.form().get(this.control().field);
     this.control().blur$?.next(e);
     if (control && control.invalid) {
       control.markAsTouched();

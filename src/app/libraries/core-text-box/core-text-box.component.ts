@@ -1,4 +1,4 @@
-import { Component, effect, input, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, effect, input, Input, OnChanges, OnDestroy, OnInit, output, SimpleChanges } from '@angular/core';
 import { CoreFormControlBaseComponent } from '../core-form-control-base/core-form-control-base.component';
 import { IFormBaseControl } from '../../enum/enum-interfaces';
 import { CommonModule } from '@angular/common';
@@ -24,6 +24,9 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 export class CoreTextBoxComponent extends CoreFormControlBaseComponent implements OnInit, OnDestroy {
   control = input.required<IFormBaseControl>();
   inputValue = input.required<any>();
+
+  onFocus = output<any>();
+  onBlur = output<any>();
 
   constructor() {
     super();

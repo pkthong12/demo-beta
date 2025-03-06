@@ -14,7 +14,7 @@
             @switch (control().controlType) {
                 @case('TEXTBOX') {
                     <core-text-box [formControlName]="control().field" [inputValue]="control().value"
-                    [control]="control()"></core-text-box>
+                    [control]="control()" (onBlur)="onBlur($event)" (onFocus)="onFocus($event)"></core-text-box>
                 }
                 @case('CHECKBOX') {
                     <core-check-box [formControlName]="control().field" [text]="control().label"
@@ -22,7 +22,7 @@
                 }
                 @default {
                     <core-text-box [formControlName]="control().field" [inputValue]="control().value"
-                    [control]="control()"></core-text-box>
+                    [control]="control()" (onBlur)="onBlur($event)" (onFocus)="onFocus($event)"></core-text-box>
                 }
             }
 
