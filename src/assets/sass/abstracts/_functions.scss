@@ -1,0 +1,14 @@
+@function contrast-color($color) {
+    $color-brightness: (
+        red($color) * 299 + green($color) * 587 + blue($color) * 114) / 1000;
+    @return if($color-brightness >=150, #212529, #ffffff
+);
+}
+
+@function tint-color($color, $percentage) {
+    @return mix(white, $color, $percentage);
+}
+
+@function shade-color($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}

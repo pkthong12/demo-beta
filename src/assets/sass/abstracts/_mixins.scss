@@ -1,0 +1,50 @@
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  padding: $btn-padding-y $btn-padding-x;
+  border-radius: $border-radius;
+  border: 1px solid transparent;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:active {
+      border: 1px solid $color-gray-dark;
+  }
+
+  &:focus {
+      outline: none;
+  }
+
+  &:disabled {
+      opacity: 0.65;
+      pointer-events: none;
+      cursor: not-allowed;
+  }
+}
+
+@mixin button-variant($background, $hover-background, $active-background, $text-color) {
+  background-color: $background;
+  color: $text-color;
+  border-color: $background;
+  &:hover:not(:disabled) {
+      background-color: $hover-background;
+      border-color: $hover-background;
+  }
+
+  &:active:not(:disabled) {
+      background-color: $active-background;
+      border-color: $hover-background;
+  }
+
+  &:disabled {
+      background-color: rgba($background, 0.5);
+  }
+}
