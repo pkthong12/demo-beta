@@ -4,7 +4,7 @@ import { ControlDemoComponent } from './control-demo/control-demo.component';
 export const routes: Routes = [
     {
         path: "",
-        redirectTo: "button-style",
+        redirectTo: "signal",
         pathMatch: "full",
     },
     {
@@ -17,6 +17,12 @@ export const routes: Routes = [
         path: 'button-style',
         loadComponent() {
             return import('./button-style/button-style.component').then(m => m.ButtonStyleComponent);
+        }
+    },
+    {
+        path: 'signal',
+        loadComponent() {
+            return import('./signal-demo/signal-demo.component').then(m => m.SignalComponent);
         }
     }
 ];
