@@ -1,12 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
+import { EButtonType, EButtonSize } from '../../enum/enum-button';
+import { BaseComponent } from '../base-component/base-component.component';
 
 @Component({
-  selector: 'app-core-button',
-  standalone: true,
-  imports: [],
-  templateUrl: './core-button.component.html',
-  styleUrl: './core-button.component.scss'
+  template: '',
 })
-export class CoreButtonComponent {
+export abstract class CoreButtonComponent extends BaseComponent {
+  // Input properties
+  theme = input<EButtonType>(EButtonType.PRIMARY);
+  size = input<EButtonSize>(EButtonSize.MEDIUM);
 
+  // Output signals
+  handleButtonClick = output<void>();
+  handleButtonHover = output<boolean>()
+
+  buttonClass = computed(() =>
+    `btn btn-${this.theme()} btn-${this.size()}`
+  );
+
+
+  // Abstract methods
+  abstract onClick(): void;
+  abstract onHover(isHovered: boolean): void;
+  abstract onFocus(): void;
+  abstract onBlur(): void;
 }
