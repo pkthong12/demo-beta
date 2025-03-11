@@ -1,2 +1,6 @@
 @use '../../../assets/sass/abstracts';
 @use '../../../assets/sass/components';
+
+core-button-demo + core-button-demo {
+    padding-left: 1rem;
+}

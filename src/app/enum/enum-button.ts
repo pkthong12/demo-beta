@@ -16,7 +16,13 @@ export enum EButtonType {
 }
 
 export enum EButtonSize {
-    SMALL ='small',
-    MEDIUM ='medium',
-    LARGE = 'large'
+    SMALL ='sm',
+    MEDIUM ='md',
+    LARGE = 'lg'
+}
+export enum EButtonState {
+    NONE = 'none',
+    HOVER = 'hover',
+    ACTIVE = 'active',
+    DISABLE = 'disabled',
 }
