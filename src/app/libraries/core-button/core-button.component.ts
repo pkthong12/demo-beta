@@ -5,28 +5,27 @@ import { BaseComponent } from '../base-component/base-component.component';
 @Component({
   template: '',
 })
-export abstract class CoreButtonComponent extends BaseComponent {
+export abstract class CoreButtonComponent {
   // Input properties
-  theme = input<EButtonType>(EButtonType.PRIMARY);
+  theme = input<EButtonType | undefined>();
   size = input<EButtonSize>(EButtonSize.MEDIUM);
   state = input<EButtonState>(EButtonState.NONE);
 
   // Output signals
   handleButtonClick = output<void>();
   handleButtonHover = output<boolean>()
+  handleButtonFocus = output<void>()
+  handleButtonBlur = output<void>()
 
   buttonClass = computed(() => {
-    let classStyle = `btn `;
-    if (this.theme()) {
-      classStyle += ` btn-${this.theme()}`;
-      if (this.state() && this.state() !== EButtonState.NONE) classStyle += `-${this.state()}`;
+    return {
+      btn: true,
+      [`btn-${this.theme()}`]: !!this.theme(),
+      [`btn-${this.theme()}-${this.state()}`]: !!this.theme() && !!this.state(),
+      [`btn-${this.size()}`]: !!this.size(),
     }
-    if (this.size() && this.size() !== EButtonSize.MEDIUM) classStyle += ` btn-${this.size()}`;
-    return classStyle;
   }
   );
-
-
   // Abstract methods
   abstract onClick(): void;
   abstract onHover(isHovered: boolean): void;

@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, computed, effect, signal, untracked } from '@angular/core';
 import { interval } from 'rxjs';
 
 @Component({
@@ -16,14 +15,22 @@ export class SignalComponent {
   countComp = computed(() => this.countSignal() * 2);
   countCompFormEffect = 1;
 
+  demo = signal({ name: 'signal-dem' });
+
   timer$ = interval(1000);
   // toSignalTimer = toSignal(this.timer$);
 
 
   constructor() {
     effect(() => {
-      this.countCompFormEffect = this.count * this.countComp();
-    })
+      untracked(() => {
+        this.count * this.countComp()
+      })
+    }, {})
+
+    setTimeout(() => {
+      this.demo.set({ name: '' });
+    }, 1000)
   }
 
   increment() {
@@ -31,4 +38,3 @@ export class SignalComponent {
     this.countSignal.update(value => value + 1);
   }
 }
-   
