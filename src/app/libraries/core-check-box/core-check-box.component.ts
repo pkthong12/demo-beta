@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, EventEmitter, input, Input, OnChanges, OnDestroy, OnInit, output, Output, SimpleChanges } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, effect, input, Input, output } from '@angular/core';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CoreFormControlBaseComponent } from '../core-form-control-base/core-form-control-base.component';
 
 @Component({
