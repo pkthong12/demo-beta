@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { ICoreFormSection } from '../../enum/enum-interfaces';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CoreControlService {
   toFormGroup(sections: ICoreFormSection[]): any {
+    if(typeof sections === 'string') sections = JSON.parse(sections);
     const group: any = {};
     if (!sections) return group;
     sections.forEach((section) => {

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, EventEmitter, input, Input, OnChanges, OnDestroy, OnInit, output, Output, signal, SimpleChanges } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, EventEmitter, inject, Inject, input, Input, OnChanges, OnDestroy, OnInit, output, Output, signal, SimpleChanges } from '@angular/core';
 import { ICoreFormSection } from '../../enum/enum-interfaces';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreControlService } from '../core-control/core-control.service';
@@ -21,6 +21,13 @@ import { BaseComponent } from '../base-component/base-component.component';
   styleUrl: './core-form.component.scss'
 })
 export class CoreFormComponent extends BaseComponent {
+  
+  private coreControlService = inject(CoreControlService);
+
+
+
+  private changeDetectorRef = inject(ChangeDetectorRef);
+
   formName = input<string>();
   inputSections = input.required<ICoreFormSection[]>();
   @Input() checkError$ = new BehaviorSubject<boolean>(false);
@@ -40,8 +47,6 @@ export class CoreFormComponent extends BaseComponent {
    *
    */
   constructor(
-    private coreControlService: CoreControlService,
-    private changeDetectorRef: ChangeDetectorRef
   ) {
     super();
     effect(() => {

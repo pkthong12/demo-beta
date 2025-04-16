@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { CoreCheckBoxComponent } from "./core-check-box.component";
 
 const meta: Meta<CoreCheckBoxComponent> = {
-    title: 'CoreCheckBoxComponent',
+    title: 'Components/CoreControl/CoreCheckBox',
     component: CoreCheckBoxComponent,
     tags: ['autodocs'],
 }

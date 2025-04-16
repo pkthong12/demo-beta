@@ -22,6 +22,10 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
   styleUrl: './core-text-box.component.scss'
 })
 export class CoreTextBoxComponent extends CoreFormControlBaseComponent implements OnInit, OnDestroy {
+  /**
+   * Input required: control
+   * @summary: 'IFormBaseControl'
+   */
   control = input.required<IFormBaseControl>();
   inputValue = input.required<any>();
 
