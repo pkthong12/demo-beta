@@ -1,12 +1,11 @@
 
 import type { Meta, StoryObj } from '@storybook/angular';
 
-import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
 
 import { CommonModule } from '@angular/common';
-import { TaskListComponent } from './task-list.component';
-import { TaskBoxComponent } from '../task-box/task-box.component';
 import * as TaskStories from '../task-box/task-box.stories';
+import { TaskListComponent } from './task-list.component';
 
 
 const image = {

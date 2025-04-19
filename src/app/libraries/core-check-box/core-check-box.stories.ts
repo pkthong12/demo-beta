@@ -8,14 +8,14 @@ const meta: Meta<CoreCheckBoxComponent> = {
 }
 
 export default meta;
-type CoreCheckBoxStory = StoryObj<CoreCheckBoxComponent>;
+// type CoreCheckBoxStory = StoryObj<CoreCheckBoxComponent>;
 
 
-export const primary: CoreCheckBoxStory = {
-  args: {
-    disabled:true,
-    inputValue:true,
-    text: 'Checkbox',
-    onClick: () => {},
-  },
-};
+// export const primary: CoreCheckBoxStory = {
+//   args: {
+//     disabled:true,
+//     inputValue:true,
+//     text: 'Checkbox',
+//     onClick: () => {},
+//   },
+// };

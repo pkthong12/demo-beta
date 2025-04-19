@@ -6,19 +6,21 @@
                 @for (section of sections(); track $index) {
                 <div class="section">
                     @if (section.caption) {
-                        <div class="section-header-label">
-                            <div class="section-caption">{{ section.caption }}</div>
-                        </div>
+                    <div class="section-header-label">
+                        <div class="section-caption">{{ section.caption }}</div>
+                    </div>
                     }
-                    
+
                     @for (row of section.rows; track $index) {
-                    <div class="row mb15">
+                    <div class="row mb15" [style]="{
+                        flexDirection: flexDirection(),
+                    }">
                         @for (col of row; track $index) {
-                            @if(col.hidden !== true){
-                            <div [class]="'col-md-' + col.flexSize">
-                                <core-control [control]="col" [form]="form" [checkError$]="checkError$"></core-control>
-                            </div>
-                            }
+                        @if(col.hidden !== true){
+                        <div [class]="'col-md-' + col.flexSize">
+                            <core-control [control]="col" [form]="form" [checkError$]="checkError$"></core-control>
+                        </div>
+                        }
                         }
                     </div>
                     }
@@ -28,7 +30,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-12 ">
-                <div class="row justify-content-center">
+                <div class="justify-content-center">
                     <div class="btn btn__primary col-md-3" (click)="onFormSubmit()">
                         <p>Submit</p>
                     </div>
@@ -39,11 +41,5 @@
             </div>
         </div>
     </form>
-
-    @if(payLoad){
-        <div class="form-row payload-preview">
-            <strong>Current values</strong><br>{{payLoad}}
-        </div>
-    }
 </div>
 }

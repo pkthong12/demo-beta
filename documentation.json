@@ -758,6 +758,96 @@
             "templateData": "<div>\r\n    <button class=\"btn btn-success\">Button</button>\r\n    <button class=\"btn btn-success-hover\">Button</button>\r\n    <button class=\"btn btn-success-active\">Button</button>\r\n    <button class=\"btn btn-disabled\">Button</button>\r\n    <button class=\"btn btn-success btn-sm\">Button</button>\r\n    <button class=\"btn btn-disabled btn-lg\">Button</button>\r\n</div>\r\n<br>\r\n<div>\r\n    <button class=\"btn btn-primary\">Button</button>\r\n    <button class=\"btn btn-primary-hover\">Button</button>\r\n    <button class=\"btn btn-primary-active\">Button</button>\r\n    <button class=\"btn btn-disabled\">Button</button>\r\n</div>\r\n<br>\r\n<div>\r\n    <core-button-demo>Button</core-button-demo>\r\n    <core-button-demo [size]=\"size\" [theme]=\"theme\">Button</core-button-demo>\r\n    <core-button-demo [size]=\"size\" [theme]=\"theme\">Button</core-button-demo>\r\n</div>"
         },
         {
+            "name": "ColorComponent",
+            "id": "component-ColorComponent-8258128117767476755be5c3326ac6773c8b130ea8f17aa2655a14213a87a33cfef8cc98a8df30765549106ae652a8e001bf9ed0de03f18d3f43121b773b24dc",
+            "file": "src/app/demo/style-system/color/color.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "color",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./color.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "arrayColor",
+                    "defaultValue": "['red', 'yellow', 'black', 'white', 'orange']",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "arrayColorDetail",
+                    "defaultValue": "new Array(10).fill('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 48
+                },
+                {
+                    "name": "color",
+                    "defaultValue": "input<string>('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "colorShades",
+                    "defaultValue": "{\r\n        red: [\r\n            '#FFF1F0', // red-10\r\n            '#ffcccc', // red-20\r\n            '#ffb3b3', // red-30\r\n            '#ff9999', // red-40\r\n            '#ff8080', // red-50\r\n            '#ff6666', // red-60 (primary)\r\n            '#ff4d4d', // red-70\r\n            '#ff3333', // red-80\r\n            '#ff1a1a', // red-90\r\n            '#ff0000'  // red-100\r\n        ],\r\n        yellow: [\r\n            '#ffffe6', '#ffffcc', '#ffffb3', '#ffff99', '#ffff80',\r\n            '#ffff66', '#ffff4d', '#ffff33', '#ffff1a', '#ffff00'\r\n        ],\r\n        black: [\r\n            '#999999', '#8c8c8c', '#808080', '#737373', '#666666',\r\n            '#595959', '#4d4d4d', '#404040', '#333333', '#262626'\r\n        ],\r\n        white: [\r\n            '#ffffff', '#f7f7f7', '#f0f0f0', '#e8e8e8', '#e0e0e0',\r\n            '#d9d9d9', '#d1d1d1', '#c9c9c9', '#c2c2c2', '#bababa'\r\n        ],\r\n        orange: [\r\n            '#ffeee6', '#ffddcc', '#ffccb3', '#ffbb99', '#ffaa80',\r\n            '#ff9966', '#ff884d', '#ff7733', '#ff661a', '#ff5500'\r\n        ]\r\n    }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from \"@angular/core\";\r\n\r\n@Component({\r\n    selector: 'color',\r\n    templateUrl: './color.component.html',\r\n    standalone: true\r\n})\r\n\r\nexport class ColorComponent {\r\n    color = input<string>('');\r\n\r\n\r\n    arrayColor = ['red', 'yellow', 'black', 'white', 'orange'];\r\n\r\n    // Shades for each color (simulating SASS $reds, $yellows, etc.)\r\n    colorShades: { [key: string]: string[] } = {\r\n        red: [\r\n            '#FFF1F0', // red-10\r\n            '#ffcccc', // red-20\r\n            '#ffb3b3', // red-30\r\n            '#ff9999', // red-40\r\n            '#ff8080', // red-50\r\n            '#ff6666', // red-60 (primary)\r\n            '#ff4d4d', // red-70\r\n            '#ff3333', // red-80\r\n            '#ff1a1a', // red-90\r\n            '#ff0000'  // red-100\r\n        ],\r\n        yellow: [\r\n            '#ffffe6', '#ffffcc', '#ffffb3', '#ffff99', '#ffff80',\r\n            '#ffff66', '#ffff4d', '#ffff33', '#ffff1a', '#ffff00'\r\n        ],\r\n        black: [\r\n            '#999999', '#8c8c8c', '#808080', '#737373', '#666666',\r\n            '#595959', '#4d4d4d', '#404040', '#333333', '#262626'\r\n        ],\r\n        white: [\r\n            '#ffffff', '#f7f7f7', '#f0f0f0', '#e8e8e8', '#e0e0e0',\r\n            '#d9d9d9', '#d1d1d1', '#c9c9c9', '#c2c2c2', '#bababa'\r\n        ],\r\n        orange: [\r\n            '#ffeee6', '#ffddcc', '#ffccb3', '#ffbb99', '#ffaa80',\r\n            '#ff9966', '#ff884d', '#ff7733', '#ff661a', '#ff5500'\r\n        ]\r\n    };\r\n\r\n    // Number of shades per color (same as SASS example: 10 shades)\r\n    arrayColorDetail = new Array(10).fill(''); // Used for iteration\r\n\r\n    constructor() {\r\n        console.log(this.arrayColorDetail.length); // Outputs: 10\r\n    }\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 48
+            },
+            "extends": [],
+            "templateData": "@for(color of arrayColor; track $index){\r\n<div class=\"color-comp row\" [style]=\"{\r\n        \r\n    }\">\r\n    <div class=\"color-detail col\" [style]=\"{\r\n    }\">\r\n        {{color}}\r\n    </div>\r\n    @for(i of arrayColorDetail; track $index){\r\n    <div class=\"col\">\r\n        <div class=\"color-detail\" [style]=\"{\r\n            height: '50px',\r\n            backgroundColor: colorShades[color][$index]\r\n        }\">\r\n        </div>\r\n        <div>\r\n            {{colorShades[color][$index]}}\r\n        </div>\r\n    </div>\r\n\r\n    }\r\n</div>\r\n}"
+        },
+        {
             "name": "ControlDemoComponent",
             "id": "component-ControlDemoComponent-f034cddd21e4f103109e3bc1fa671a61b46ec9e4a3758866387ae929598cc5699e229abb39db3ece11dc47df75756a2d14a5422165d89365d7e73a8ce54328a5",
             "file": "src/app/demo/control-demo/control-demo.component.ts",
@@ -2279,7 +2369,7 @@
         },
         {
             "name": "CoreFormComponent",
-            "id": "component-CoreFormComponent-57432e11cd595a2c005e4e9a78ca6d54471d3d140a6df2eddec4c06abac751db0b508c1b99449bc173fa165114fb7a1f8b0483fb26f5b0ea296535a2fc0cee49",
+            "id": "component-CoreFormComponent-7f9b4aabdd08319dd7adb0c8079b85eadba1b6602471bdff19d5dfe893e988e087d7942e832cfc9071e4ec9213bea0fc1d433d6cb86fbf99760c970e6400d8b3",
             "file": "src/app/libraries/core-form/core-form.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2301,8 +2391,16 @@
                     "defaultValue": "new BehaviorSubject<boolean>(false)",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 33,
+                    "line": 47,
                     "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "inputSections",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "ICoreFormSection[]",
                     "decorators": []
                 },
                 {
@@ -2312,8 +2410,20 @@
                     "type": "",
                     "indexKey": "",
                     "optional": false,
-                    "description": "",
+                    "description": "<p>The list of tasks</p>\n",
                     "line": 31,
+                    "rawdescription": "\nThe list of tasks",
+                    "required": false
+                },
+                {
+                    "name": "iCoreFormSectionE",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45,
                     "required": false
                 }
             ],
@@ -2326,7 +2436,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 38,
+                    "line": 52,
                     "required": false
                 },
                 {
@@ -2337,7 +2447,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 37,
+                    "line": 51,
                     "required": false
                 },
                 {
@@ -2348,7 +2458,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 35,
+                    "line": 49,
                     "required": false
                 },
                 {
@@ -2359,11 +2469,25 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 36,
+                    "line": 50,
                     "required": false
                 }
             ],
             "propertiesClass": [
+                {
+                    "name": "_inputSections",
+                    "defaultValue": "signal<ICoreFormSection[]>(null!)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 33,
+                    "modifierKind": [
+                        123
+                    ]
+                },
                 {
                     "name": "buttonClick",
                     "deprecated": false,
@@ -2372,7 +2496,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 38,
+                    "line": 52,
                     "required": false
                 },
                 {
@@ -2384,7 +2508,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 29,
+                    "line": 27,
                     "modifierKind": [
                         123
                     ]
@@ -2398,35 +2522,14 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 25,
+                    "line": 26,
                     "modifierKind": [
                         123
                     ]
                 },
                 {
-                    "name": "form",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "FormGroup",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 40
-                },
-                {
-                    "name": "formName",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 31,
-                    "required": false
-                },
-                {
-                    "name": "inputSections",
-                    "defaultValue": "input.required<ICoreFormSection[]>()",
+                    "name": "flexDirection",
+                    "defaultValue": "input<string>('row')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -2436,6 +2539,39 @@
                     "line": 32
                 },
                 {
+                    "name": "form",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormGroup",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 54
+                },
+                {
+                    "name": "formName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>The list of tasks</p>\n",
+                    "line": 31,
+                    "rawdescription": "\nThe list of tasks",
+                    "required": false
+                },
+                {
+                    "name": "iCoreFormSectionE",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45,
+                    "required": false
+                },
+                {
                     "name": "onCancel",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -2443,7 +2579,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 37,
+                    "line": 51,
                     "required": false
                 },
                 {
@@ -2454,7 +2590,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 35,
+                    "line": 49,
                     "required": false
                 },
                 {
@@ -2465,7 +2601,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 36,
+                    "line": 50,
                     "required": false
                 },
                 {
@@ -2476,7 +2612,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 44
+                    "line": 58
                 },
                 {
                     "name": "prevSections",
@@ -2486,18 +2622,18 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 42
+                    "line": 56
                 },
                 {
                     "name": "sections",
-                    "defaultValue": "this.inputSections",
+                    "defaultValue": "computed(() => this._inputSections())",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 41
+                    "line": 55
                 },
                 {
                     "name": "subscriptions",
@@ -2523,7 +2659,10 @@
                     "typeParameters": [],
                     "line": 72,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
                 },
                 {
                     "name": "onFormReset",
@@ -2585,7 +2724,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, EventEmitter, inject, Inject, input, Input, OnChanges, OnDestroy, OnInit, output, Output, signal, SimpleChanges } from '@angular/core';\r\nimport { ICoreFormSection } from '../../enum/enum-interfaces';\r\nimport { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { CoreControlService } from '../core-control/core-control.service';\r\nimport { CommonModule } from '@angular/common';\r\nimport { CoreControlComponent } from '../core-control/core-control.component';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { BaseComponent } from '../base-component/base-component.component';\r\n\r\n@Component({\r\n  selector: 'core-form',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    CoreControlComponent\r\n  ],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  templateUrl: './core-form.component.html',\r\n  styleUrl: './core-form.component.scss'\r\n})\r\nexport class CoreFormComponent extends BaseComponent {\r\n  \r\n  private coreControlService = inject(CoreControlService);\r\n\r\n\r\n\r\n  private changeDetectorRef = inject(ChangeDetectorRef);\r\n\r\n  formName = input<string>();\r\n  inputSections = input.required<ICoreFormSection[]>();\r\n  @Input() checkError$ = new BehaviorSubject<boolean>(false);\r\n\r\n  onFormCreated = output<any>();\r\n  onSubmit = output<any>();\r\n  onCancel = output<any>();\r\n  buttonClick = output<any>();\r\n\r\n  form!: FormGroup;\r\n  sections = this.inputSections;\r\n  prevSections!: ICoreFormSection[];\r\n\r\n  payLoad!: any;\r\n\r\n  /**\r\n   *\r\n   */\r\n  constructor(\r\n  ) {\r\n    super();\r\n    effect(() => {\r\n      this.onBuildForm();\r\n    })\r\n  }\r\n  //with signal, this is not necessary\r\n  // updateSections(newSections: ICoreFormSection[]): void {\r\n  //   this.sections().map((section, sectionIndex) => {\r\n  //     const newSection = newSections[sectionIndex];\r\n  //     section.rows.map((row, rowIndex) => {\r\n  //       const newRow = newSection.rows[rowIndex];\r\n  //       row.map((control, controlIndex) => {\r\n  //         const newControl = newRow[controlIndex];\r\n  //         control.hidden = newControl?.hidden;\r\n  //       });\r\n  //     });\r\n\r\n  //   });\r\n\r\n  // }\r\n\r\n  onBuildForm(): void {\r\n    const mainGroup = this.coreControlService.toFormGroup(this.inputSections());\r\n    if (!this.form && JSON.stringify(this.inputSections()) !== JSON.stringify(this.prevSections)) {\r\n      this.form = new FormGroup(mainGroup);\r\n    } else {\r\n      this.coreControlService.updateFormGroup(this.form, mainGroup);\r\n      // this.updateSections(newSections);\r\n    }\r\n\r\n    this.prevSections = this.inputSections();\r\n    this.onFormCreated.emit({\r\n      formName: this.formName,\r\n      formGroup: this.form,\r\n    });\r\n\r\n    this.changeDetectorRef.detectChanges();\r\n\r\n  }\r\n  onFormSubmit() {\r\n    this.checkError$.next(true);\r\n    this.payLoad = JSON.stringify(this.form.getRawValue(), (key, value) =>\r\n      value === undefined ? null : value, 2);\r\n    if (!!this.form.valid) {\r\n      this.onSubmit.emit(this.form?.getRawValue());\r\n    }\r\n  }\r\n  onFormReset() {\r\n    this.form.reset();\r\n    this.checkError$.next(false);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, input, Input, output, signal } from '@angular/core';\r\nimport { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { ICoreFormSection } from '../../enum/enum-interfaces';\r\nimport { BaseComponent } from '../base-component/base-component.component';\r\nimport { CoreControlComponent } from '../core-control/core-control.component';\r\nimport { CoreControlService } from '../core-control/core-control.service';\r\nimport { ICoreFormSectionE } from './core-form.stories';\r\n\r\n@Component({\r\n  selector: 'core-form',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    CoreControlComponent\r\n  ],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  templateUrl: './core-form.component.html',\r\n  styleUrl: './core-form.component.scss'\r\n})\r\nexport class CoreFormComponent extends BaseComponent {\r\n\r\n  private coreControlService = inject(CoreControlService);\r\n  private changeDetectorRef = inject(ChangeDetectorRef);\r\n\r\n\r\n/** The list of tasks */\r\n  formName = input<string>();\r\n  flexDirection = input<string>('row');\r\n  private _inputSections = signal<ICoreFormSection[]>(null!);\r\n  @Input()\r\n\r\n  set inputSections(value: ICoreFormSection[]) {\r\n    debugger\r\n    this._inputSections.set(value);\r\n  }\r\n  /** The list of tasks */\r\n  get inputSections(): ICoreFormSection[] {\r\n    return this._inputSections();\r\n  }\r\n\r\n  iCoreFormSectionE = input<ICoreFormSectionE>();\r\n\r\n  @Input() checkError$ = new BehaviorSubject<boolean>(false);\r\n\r\n  onFormCreated = output<any>();\r\n  onSubmit = output<any>();\r\n  onCancel = output<any>();\r\n  buttonClick = output<any>();\r\n\r\n  form!: FormGroup;\r\n  sections = computed(() => this._inputSections());\r\n  prevSections!: ICoreFormSection[];\r\n\r\n  payLoad!: any;\r\n\r\n  /**\r\n   *\r\n   */\r\n  constructor(\r\n  ) {\r\n    super();\r\n    effect(() => {\r\n      this.onBuildForm();\r\n      debugger\r\n    })\r\n  }\r\n\r\n  private onBuildForm(): void {\r\n    console.log(this._inputSections());\r\n    const mainGroup = this.coreControlService.toFormGroup(this._inputSections());\r\n    if (!this.form && JSON.stringify(this._inputSections()) !== JSON.stringify(this.prevSections)) {\r\n      this.form = new FormGroup(mainGroup);\r\n    } else {\r\n      this.coreControlService.updateFormGroup(this.form, mainGroup);\r\n    }\r\n\r\n    this.prevSections = this._inputSections();\r\n    this.onFormCreated.emit({\r\n      formName: this.formName,\r\n      formGroup: this.form,\r\n    });\r\n\r\n    this.changeDetectorRef.detectChanges();\r\n\r\n  }\r\n  onFormSubmit() {\r\n    this.checkError$.next(true);\r\n    this.payLoad = JSON.stringify(this.form.getRawValue(), (key, value) =>\r\n      value === undefined ? null : value, 2);\r\n    if (!!this.form.valid) {\r\n      this.onSubmit.emit(this.form?.getRawValue());\r\n    }\r\n  }\r\n  onFormReset() {\r\n    this.form.reset();\r\n    this.checkError$.next(false);\r\n  }\r\n}\r\n",
             "styleUrl": "./core-form.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -2596,13 +2735,53 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 44,
+                "line": 58,
                 "rawdescription": "\n\n\n"
             },
             "extends": [
                 "BaseComponent"
             ],
-            "templateData": "@if(!!form){\r\n<div class=\"core-form-container\">\r\n    <form #formRef (ngSubmit)=\"onFormSubmit()\" [formGroup]=\"form\" autocomplete=\"off\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                @for (section of sections(); track $index) {\r\n                <div class=\"section\">\r\n                    @if (section.caption) {\r\n                        <div class=\"section-header-label\">\r\n                            <div class=\"section-caption\">{{ section.caption }}</div>\r\n                        </div>\r\n                    }\r\n                    \r\n                    @for (row of section.rows; track $index) {\r\n                    <div class=\"row mb15\">\r\n                        @for (col of row; track $index) {\r\n                            @if(col.hidden !== true){\r\n                            <div [class]=\"'col-md-' + col.flexSize\">\r\n                                <core-control [control]=\"col\" [form]=\"form\" [checkError$]=\"checkError$\"></core-control>\r\n                            </div>\r\n                            }\r\n                        }\r\n                    </div>\r\n                    }\r\n                </div>\r\n                }\r\n            </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n            <div class=\"col-md-12 \">\r\n                <div class=\"row justify-content-center\">\r\n                    <div class=\"btn btn__primary col-md-3\" (click)=\"onFormSubmit()\">\r\n                        <p>Submit</p>\r\n                    </div>\r\n                    <!-- <div class=\"btn btn__secondary col-md-3\" (click)=\"onFormReset()\">\r\n                        <p>Reset</p>\r\n                    </div> -->\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </form>\r\n\r\n    @if(payLoad){\r\n        <div class=\"form-row payload-preview\">\r\n            <strong>Current values</strong><br>{{payLoad}}\r\n        </div>\r\n    }\r\n</div>\r\n}"
+            "accessors": {
+                "inputSections": {
+                    "name": "inputSections",
+                    "setSignature": {
+                        "name": "inputSections",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "value",
+                                "type": "ICoreFormSection[]",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 36,
+                        "jsdoctags": [
+                            {
+                                "name": "value",
+                                "type": "ICoreFormSection[]",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "inputSections",
+                        "type": "[]",
+                        "returnType": "ICoreFormSection[]",
+                        "line": 41,
+                        "rawdescription": "\nThe list of tasks",
+                        "description": "<p>The list of tasks</p>\n"
+                    }
+                }
+            },
+            "templateData": "@if(!!form){\r\n<div class=\"core-form-container\">\r\n    <form #formRef (ngSubmit)=\"onFormSubmit()\" [formGroup]=\"form\" autocomplete=\"off\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                @for (section of sections(); track $index) {\r\n                <div class=\"section\">\r\n                    @if (section.caption) {\r\n                    <div class=\"section-header-label\">\r\n                        <div class=\"section-caption\">{{ section.caption }}</div>\r\n                    </div>\r\n                    }\r\n\r\n                    @for (row of section.rows; track $index) {\r\n                    <div class=\"row mb15\" [style]=\"{\r\n                        flexDirection: flexDirection(),\r\n                    }\">\r\n                        @for (col of row; track $index) {\r\n                        @if(col.hidden !== true){\r\n                        <div [class]=\"'col-md-' + col.flexSize\">\r\n                            <core-control [control]=\"col\" [form]=\"form\" [checkError$]=\"checkError$\"></core-control>\r\n                        </div>\r\n                        }\r\n                        }\r\n                    </div>\r\n                    }\r\n                </div>\r\n                }\r\n            </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n            <div class=\"col-md-12 \">\r\n                <div class=\"justify-content-center\">\r\n                    <div class=\"btn btn__primary col-md-3\" (click)=\"onFormSubmit()\">\r\n                        <p>Submit</p>\r\n                    </div>\r\n                    <!-- <div class=\"btn btn__secondary col-md-3\" (click)=\"onFormReset()\">\r\n                        <p>Reset</p>\r\n                    </div> -->\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n}"
         },
         {
             "name": "CoreFormControlBaseComponent",
@@ -3571,6 +3750,63 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<div class=\"list-items\">\r\n    @if(loading){\r\n    <div>loading</div>\r\n\r\n    }@if(!loading && tasks.length === 0){\r\n    <div>empty</div>\r\n    }\r\n    @else {\r\n        @for (task of tasks; track $index) {\r\n        <task-box [task]=\"task\" (onArchiveTask)=\"onArchiveTask.emit($event)\" (onPinTask)=\"onPinTask.emit($event)\">\r\n        </task-box>\r\n        }\r\n    }\r\n\r\n</div>"
+        },
+        {
+            "name": "ThemeComponent",
+            "id": "component-ThemeComponent-9d1d7a541f29a76816bf65ca28709450d59a6929edd0a89c9b8d10e6f49634372c75dc7418e04434b91c3ddf37aa2137744fa3b019a306b5d82cd01d51f42d93",
+            "file": "src/app/demo/style-system/theme/theme.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "theme",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./theme.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "theme",
+                    "defaultValue": "input<string>('light')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from \"@angular/core\";\r\n\r\n@Component({\r\n    selector: 'theme',\r\n    templateUrl: './theme.component.html',\r\n    standalone: true\r\n})\r\n\r\nexport class ThemeComponent {\r\n    theme = input<string>('light');\r\n    constructor() { }\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 10
+            },
+            "extends": [],
+            "templateData": "<div [class]=\"theme()\" style=\"height: 100px\">\r\n    {{ theme().toUpperCase() }}\r\n</div>"
         }
     ],
     "modules": [],
@@ -4297,6 +4533,24 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/demo/style-system/color/color.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ColorComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/demo/style-system/theme/theme.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ThemeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/demo/task-box/task-box.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -4436,8 +4690,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "CoreFormComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/25",
+                "coveragePercent": 6,
+                "coverageCount": "2/29",
                 "status": "low"
             },
             {

@@ -1,0 +1,23 @@
+@for(color of arrayColor; track $index){
+<div class="color-comp row" [style]="{
+        
+    }">
+    <div class="color-detail col" [style]="{
+    }">
+        {{color}}
+    </div>
+    @for(i of arrayColorDetail; track $index){
+    <div class="col">
+        <div class="color-detail" [style]="{
+            height: '50px',
+            backgroundColor: colorShades[color][$index]
+        }">
+        </div>
+        <div>
+            {{colorShades[color][$index]}}
+        </div>
+    </div>
+
+    }
+</div>
+}

@@ -3,7 +3,7 @@
     --text-color: gray;
     --primary-light: #a69ef4b8;
     --primary: #6d5dfc;
-    --primary-dark: #5b0eeb;
+    --primary-dark: #4603c1;
 
     --white: #FFFFFF;
     --greyLight-1: #E4EBF5;
@@ -67,4 +67,23 @@
 
 .btn+.btn {
     margin-left: 1rem;
+}
+
+.light{
+    background-color: var(--greyLight-1);
+    color: #241b1b;
+}
+
+.dark{
+    background-color: #241b1b;
+    color: white;
+}
+
+.color-comp + .color-comp{
+    margin-top: 1rem;
+}
+.color-detail{
+    &::first-letter {
+        text-transform: capitalize;
+    }
 }

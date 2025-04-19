@@ -1,11 +1,12 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, EventEmitter, inject, Inject, input, Input, OnChanges, OnDestroy, OnInit, output, Output, signal, SimpleChanges } from '@angular/core';
-import { ICoreFormSection } from '../../enum/enum-interfaces';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CoreControlService } from '../core-control/core-control.service';
 import { CommonModule } from '@angular/common';
-import { CoreControlComponent } from '../core-control/core-control.component';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, input, Input, output, signal } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { ICoreFormSection } from '../../enum/enum-interfaces';
 import { BaseComponent } from '../base-component/base-component.component';
+import { CoreControlComponent } from '../core-control/core-control.component';
+import { CoreControlService } from '../core-control/core-control.service';
+import { ICoreFormSectionE } from './core-form.stories';
 
 @Component({
   selector: 'core-form',
@@ -21,15 +22,28 @@ import { BaseComponent } from '../base-component/base-component.component';
   styleUrl: './core-form.component.scss'
 })
 export class CoreFormComponent extends BaseComponent {
-  
+
   private coreControlService = inject(CoreControlService);
-
-
-
   private changeDetectorRef = inject(ChangeDetectorRef);
 
+
+/** The list of tasks */
   formName = input<string>();
-  inputSections = input.required<ICoreFormSection[]>();
+  flexDirection = input<string>('row');
+  private _inputSections = signal<ICoreFormSection[]>(null!);
+  @Input()
+
+  set inputSections(value: ICoreFormSection[]) {
+    debugger
+    this._inputSections.set(value);
+  }
+  /** The list of tasks */
+  get inputSections(): ICoreFormSection[] {
+    return this._inputSections();
+  }
+
+  iCoreFormSectionE = input<ICoreFormSectionE>();
+
   @Input() checkError$ = new BehaviorSubject<boolean>(false);
 
   onFormCreated = output<any>();
@@ -38,7 +52,7 @@ export class CoreFormComponent extends BaseComponent {
   buttonClick = output<any>();
 
   form!: FormGroup;
-  sections = this.inputSections;
+  sections = computed(() => this._inputSections());
   prevSections!: ICoreFormSection[];
 
   payLoad!: any;
@@ -51,34 +65,20 @@ export class CoreFormComponent extends BaseComponent {
     super();
     effect(() => {
       this.onBuildForm();
+      debugger
     })
   }
-  //with signal, this is not necessary
-  // updateSections(newSections: ICoreFormSection[]): void {
-  //   this.sections().map((section, sectionIndex) => {
-  //     const newSection = newSections[sectionIndex];
-  //     section.rows.map((row, rowIndex) => {
-  //       const newRow = newSection.rows[rowIndex];
-  //       row.map((control, controlIndex) => {
-  //         const newControl = newRow[controlIndex];
-  //         control.hidden = newControl?.hidden;
-  //       });
-  //     });
 
-  //   });
-
-  // }
-
-  onBuildForm(): void {
-    const mainGroup = this.coreControlService.toFormGroup(this.inputSections());
-    if (!this.form && JSON.stringify(this.inputSections()) !== JSON.stringify(this.prevSections)) {
+  private onBuildForm(): void {
+    console.log(this._inputSections());
+    const mainGroup = this.coreControlService.toFormGroup(this._inputSections());
+    if (!this.form && JSON.stringify(this._inputSections()) !== JSON.stringify(this.prevSections)) {
       this.form = new FormGroup(mainGroup);
     } else {
       this.coreControlService.updateFormGroup(this.form, mainGroup);
-      // this.updateSections(newSections);
     }
 
-    this.prevSections = this.inputSections();
+    this.prevSections = this._inputSections();
     this.onFormCreated.emit({
       formName: this.formName,
       formGroup: this.form,

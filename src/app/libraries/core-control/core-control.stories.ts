@@ -59,80 +59,80 @@ const meta: Meta<CoreControlComponent> = {
 };
 
 export default meta;
-type CoreControlStory = StoryObj<CoreControlComponent>;
+// type CoreControlStory = StoryObj<CoreControlComponent>;
 
-// Story: Textbox cơ bản
-export const TextboxDefault: CoreControlStory = {
-    args: {
-        control: {
-            ...baseControl,
-            controlType: EnumFormBaseControlType.TEXTBOX,
-        },
-        form: createForm(''),
-        checkError$: new BehaviorSubject<boolean>(false),
-    },
-    parameters: {
-        excludeFromSidebar: true, // Ẩn khỏi sidebar
-        canvas: { disabled: true }, // Không hiển thị trong Canvas
-        docs: { include: true }, // Đảm bảo Docs hiển thị
-    },
-};
+// // Story: Textbox cơ bản
+// export const TextboxDefault: CoreControlStory = {
+//     args: {
+//         control: {
+//             ...baseControl,
+//             controlType: EnumFormBaseControlType.TEXTBOX,
+//         },
+//         form: createForm(''),
+//         checkError$: new BehaviorSubject<boolean>(false),
+//     },
+//     parameters: {
+//         excludeFromSidebar: true, // Ẩn khỏi sidebar
+//         canvas: { disabled: true }, // Không hiển thị trong Canvas
+//         docs: { include: true }, // Đảm bảo Docs hiển thị
+//     },
+// };
 
-// Story: Textbox với lỗi validation
-export const TextboxWithError: CoreControlStory = {
-    args: {
-        control: {
-            ...baseControl,
-            controlType: EnumFormBaseControlType.TEXTBOX,
-            label: 'Required Field',
-            value: '',
-            validators: [
-                {
-                    name: IFnNameValidator.required,
-                    validator: Validators.required,
-                    errorMessage: 'This field is required'
-                }
-            ]
-        },
-        form: createForm('', Validators.required),
-        checkError$: new BehaviorSubject<boolean>(true),
-    },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement);
-        const input = await canvas.findByRole('textbox');
-        await userEvent.click(input); // Trigger focus
-        await userEvent.tab(); // Trigger blur
-    },
-};
+// // Story: Textbox với lỗi validation
+// export const TextboxWithError: CoreControlStory = {
+//     args: {
+//         control: {
+//             ...baseControl,
+//             controlType: EnumFormBaseControlType.TEXTBOX,
+//             label: 'Required Field',
+//             value: '',
+//             validators: [
+//                 {
+//                     name: IFnNameValidator.required,
+//                     validator: Validators.required,
+//                     errorMessage: 'This field is required'
+//                 }
+//             ]
+//         },
+//         form: createForm('', Validators.required),
+//         checkError$: new BehaviorSubject<boolean>(true),
+//     },
+//     play: async ({ canvasElement }) => {
+//         const canvas = within(canvasElement);
+//         const input = await canvas.findByRole('textbox');
+//         await userEvent.click(input); // Trigger focus
+//         await userEvent.tab(); // Trigger blur
+//     },
+// };
 
-// Story: Checkbox
-export const CheckboxDefault: CoreControlStory = {
-    args: {
-        control: {
-            ...baseControl,
-            controlType: EnumFormBaseControlType.CHECKBOX,
-            label: 'Checkbox Field',
-            value: true,
-            type: 'checkbox',
-        },
-        form: fb.group({
-            textbox: [false],
-        }),
-        checkError$: new BehaviorSubject<boolean>(false),
-    },
-};
+// // Story: Checkbox
+// export const CheckboxDefault: CoreControlStory = {
+//     args: {
+//         control: {
+//             ...baseControl,
+//             controlType: EnumFormBaseControlType.CHECKBOX,
+//             label: 'Checkbox Field',
+//             value: true,
+//             type: 'checkbox',
+//         },
+//         form: fb.group({
+//             textbox: [false],
+//         }),
+//         checkError$: new BehaviorSubject<boolean>(false),
+//     },
+// };
 
-// Story: Readonly Textbox
-export const TextboxReadonly: CoreControlStory = {
-    args: {
-        control: {
-            ...baseControl,
-            controlType: EnumFormBaseControlType.TEXTBOX,
-            label: 'Readonly Field',
-            value: 'Readonly Value',
-            readonly: true,
-        },
-        form: createForm('Readonly Value'),
-        checkError$: new BehaviorSubject<boolean>(false),
-    },
-};
+// // Story: Readonly Textbox
+// export const TextboxReadonly: CoreControlStory = {
+//     args: {
+//         control: {
+//             ...baseControl,
+//             controlType: EnumFormBaseControlType.TEXTBOX,
+//             label: 'Readonly Field',
+//             value: 'Readonly Value',
+//             readonly: true,
+//         },
+//         form: createForm('Readonly Value'),
+//         checkError$: new BehaviorSubject<boolean>(false),
+//     },
+// };
